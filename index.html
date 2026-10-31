@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Tasnia Yeasmin Suraiya | The 23rd Chapter</title>
+  <meta name="description" content="A mobile tribute for Tasnia Yeasmin Suraiya (Tasu) on her 23rd birthday. From Alor Setar to Sylhet.">
+  <meta name="theme-color" content="#0F1715">
+  
+  <!-- Favicon (Waxing Crescent Moon) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌙</text></svg>">
+
+  <!-- Google Fonts: Playfair Display, Plus Jakarta Sans, Amiri (Arabic), Hind Siliguri (Bengali) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Hind+Siliguri:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            midnight: '#0F1715',
+            'midnight-deep': '#090F0E',
+            'midnight-surface': '#14201D',
+            'midnight-card': '#182723',
+            'midnight-border': '#223832',
+            gold: {
+              DEFAULT: '#C5A059',
+              light: '#E6CA85',
+              dark: '#8E7036',
+              soft: '#F4E8D0',
+              accent: '#DFBA6B'
+            },
+            parchment: {
+              DEFAULT: '#F5F0E6',
+              warm: '#EDE5D6',
+              muted: '#D8CEBE',
+              dark: '#2A302E'
+            }
+          },
+          fontFamily: {
+            serif: ['Playfair Display', 'serif'],
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            arabic: ['Amiri', 'serif'],
+            bengali: ['Hind Siliguri', 'sans-serif']
+          },
+          boxShadow: {
+            'gold-glow': '0 0 25px -5px rgba(197, 160, 89, 0.35)',
+            'gold-subtle': '0 4px 20px -2px rgba(197, 160, 89, 0.18)',
+            'emerald-deep': '0 20px 40px -15px rgba(0, 0, 0, 0.7)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    /* Custom Scrollbar & Utility Animations */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0F1715;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #C5A059;
+      border-radius: 9999px;
+    }
+
+    /* Subtle Islamic Geometric Pattern Backdrop */
+    .bg-islamic-pattern {
+      background-color: #0F1715;
+      background-image: radial-gradient(rgba(197, 160, 89, 0.08) 1px, transparent 1px),
+                        radial-gradient(rgba(197, 160, 89, 0.04) 1px, #0F1715 1px);
+      background-size: 32px 32px;
+      background-position: 0 0, 16px 16px;
+    }
+
+    .khatim-pattern {
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg stroke='%23C5A059' stroke-width='0.6' stroke-opacity='0.12'%3E%3Cpath d='M30 0l30 30-30 30L0 30z'/%3E%3Cpath d='M0 0h60v60H0z'/%3E%3Ccircle cx='30' cy='30' r='10'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    /* Shimmer Effect */
+    @keyframes goldShimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .gold-shimmer {
+      background: linear-gradient(90deg, #C5A059 0%, #FFF3D6 50%, #C5A059 100%);
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: goldShimmer 6s linear infinite;
+    }
+
+    /* Waveform Animation */
+    @keyframes soundwave {
+      0%, 100% { height: 6px; }
+      50% { height: 28px; }
+    }
+    .wave-playing {
+      animation: soundwave 1.2s ease-in-out infinite;
+    }
+
+    /* Parchment Inner Texture Overlay */
+    .parchment-texture {
+      background: linear-gradient(135deg, #FBF8F2 0%, #F5F0E6 100%);
+      position: relative;
+    }
+
+    /* Prevent text selection during taps on mobile */
+    .no-tap-highlight {
+      -webkit-tap-highlight-color: transparent;
+    }
+  </style>
+</head>
+<body class="bg-midnight-deep text-parchment-warm font-sans antialiased min-h-screen selection:bg-gold selection:text-midnight flex justify-center">
+
+  <!-- Desktop Presentation Wrapper (Centers mobile viewport on wider screens) -->
+  <div class="w-full max-w-[430px] min-h-screen bg-islamic-pattern khatim-pattern relative overflow-x-hidden shadow-[0_0_80px_rgba(0,0,0,0.85)] border-x border-midnight-border/60">
+
+    <!-- ========================================== -->
+    <!-- 1. THE ENVELOPE / GATEWAY SCREEN           -->
+    <!-- ========================================== -->
+    <section id="gateway-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-between p-6 bg-midnight-deep transition-all duration-1000 ease-in-out max-w-[430px] mx-auto border-x border-midnight-border/60">
+      
+      <!-- Top Royal Islamic Geometry Watermark -->
+      <div class="w-full flex justify-between items-center pt-3 opacity-60">
+        <span class="text-[10px] tracking-[0.25em] text-gold uppercase font-medium">Bismillah Ar-Rahman Ar-Rahim</span>
+        <svg class="w-4 h-4 text-gold/80" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2l2.4 6.8h7.2l-5.8 4.3 2.2 6.9-6-4.4-6 4.4 2.2-6.9-5.8-4.3h7.2z"/>
+        </svg>
+      </div>
+
+      <!-- Center Envelope / Waxing Crescent Gateway Core -->
+      <div class="flex flex-col items-center text-center my-auto px-2">
+        <!-- Glowing Waxing Crescent Moon Icon -->
+        <div class="relative mb-6">
+          <div class="w-24 h-24 rounded-full bg-gradient-to-tr from-midnight-surface via-midnight-card to-gold/20 flex items-center justify-center p-1 shadow-gold-glow border border-gold/40">
+            <!-- SVG Waxing Crescent Moon (42% illuminated aesthetic) -->
+            <svg class="w-14 h-14 text-gold drop-shadow-[0_0_12px_rgba(197,160,89,0.7)]" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.02 0 2.01-.15 2.94-.44-4.66-1.47-8.04-5.8-8.04-10.96 0-5.16 3.38-9.49 8.04-10.96-.93-.29-1.92-.44-2.94-.44 3.96 1.48 6.78 5.25 6.78 9.7 0 2.65-1.02 5.06-2.69 6.87 2.95-1.87 4.91-5.15 4.91-8.87 0-5.52-4.48-10-10-10z"/>
+            </svg>
+          </div>
+          <span class="absolute -bottom-2 bg-midnight-card text-gold-light text-[9px] font-semibold px-2.5 py-0.5 rounded-full border border-gold/40 tracking-widest uppercase">
+            6 Ramadan 1424 AH
+          </span>
+        </div>
+
+        <!-- Name & Title -->
+        <div class="space-y-2 mb-4">
+          <p class="text-xs tracking-[0.3em] uppercase text-gold font-medium">A Solemn Dedication</p>
+          <h1 class="text-3xl font-serif font-bold text-parchment tracking-tight leading-tight">
+            Tasnia Yeasmin <br>
+            <span class="gold-shimmer italic font-normal">Suraiya</span>
+          </h1>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold-light text-xs font-medium">
+            <span>“Tasu”</span>
+            <span class="w-1 h-1 rounded-full bg-gold"></span>
+            <span>23rd Birthday</span>
+          </div>
+        </div>
+
+        <!-- Date & Location Anchor -->
+        <div class="text-[12px] text-parchment-muted/80 font-light max-w-[280px] leading-relaxed">
+          <p class="font-arabic text-sm text-gold/90 mb-1">سِلْهِتْ • يَوْمُ الْجُمُعَةِ</p>
+          <p>Sylhet • Friday, October 31, 2003</p>
+          <p class="text-[11px] text-gold/70 mt-0.5">Written with love from Alor Setar, Malaysia</p>
+        </div>
+      </div>
+
+      <!-- Bottom Interactive Trigger Button -->
+      <div class="w-full pb-4 flex flex-col items-center">
+        <button id="open-envelope-btn" onclick="openChapter()" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-gold-dark via-gold to-gold-light text-midnight-deep font-semibold text-sm tracking-wide shadow-gold-glow flex items-center justify-center gap-2 transform active:scale-95 transition-all duration-300 group no-tap-highlight">
+          <span>Open Your 23rd Chapter</span>
+          <svg class="w-4 h-4 transform group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M19 9l-7 7-7-7"/>
+          </svg>
+        </button>
+        <p class="text-[10px] text-parchment-muted/60 mt-2 tracking-wider">Tap to unfold your story</p>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- MAIN CONTENT (Revealed after Gateway)      -->
+    <!-- ========================================== -->
+    <main id="main-content" class="relative z-10 px-4 py-8 space-y-12 pb-24">
+
+      <!-- Sticky Header Bar -->
+      <header class="flex items-center justify-between pb-4 border-b border-midnight-border/70 pt-2">
+        <div class="flex items-center gap-2">
+          <div class="w-7 h-7 rounded-full bg-gold/15 border border-gold/40 flex items-center justify-center text-gold text-xs font-serif font-bold">
+            T
+          </div>
+          <div>
+            <h2 class="text-xs font-semibold tracking-wide text-parchment">Who Is Tasnia</h2>
+            <p class="text-[9px] text-gold/80 tracking-wider">Chapter XXIII • 2,276 km</p>
+          </div>
+        </div>
+        
+        <!-- Audio Quick Toggle Pill -->
+        <button id="quick-audio-btn" onclick="toggleAudio()" class="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-midnight-card border border-gold/30 text-gold text-[10px] font-medium no-tap-highlight hover:border-gold transition-colors">
+          <span id="quick-audio-icon">
+            <svg class="w-3 h-3 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </span>
+          <span id="quick-audio-label">Play Note</span>
+        </button>
+      </header>
+
+
+      <!-- ========================================== -->
+      <!-- 2. THE DAY YOU ARRIVED (TICKERS & CONTEXT) -->
+      <!-- ========================================== -->
+      <section class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-[10px] tracking-[0.28em] uppercase text-gold font-semibold">Section I • Origin</span>
+          <h2 class="text-2xl font-serif font-bold text-parchment">The Day You Arrived</h2>
+          <p class="text-xs text-parchment-muted/80 max-w-[320px] mx-auto">
+            From the moment your light touched this earth on October 31, 2003, every second has mattered.
+          </p>
+        </div>
+
+        <!-- Master Counter Board -->
+        <div class="rounded-3xl bg-midnight-card/90 border border-gold/30 p-5 shadow-emerald-deep relative overflow-hidden backdrop-blur-md">
+          <!-- Subtle watermark -->
+          <div class="absolute -right-6 -bottom-6 opacity-5 pointer-events-none text-gold">
+            <svg class="w-40 h-40" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2l2.4 6.8h7.2l-5.8 4.3 2.2 6.9-6-4.4-6 4.4 2.2-6.9-5.8-4.3h7.2z"/>
+            </svg>
+          </div>
+
+          <div class="flex items-center justify-between pb-3 mb-4 border-b border-midnight-border/80">
+            <span class="text-xs font-serif text-gold font-medium italic">Continuous Journey</span>
+            <span class="flex items-center gap-1.5 text-[10px] text-emerald-400 font-mono">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              LIVE TICKING
+            </span>
+          </div>
+
+          <!-- Primary Unit Highlights -->
+          <div class="grid grid-cols-3 gap-2.5 mb-3 text-center">
+            <div class="bg-midnight-surface/80 rounded-2xl p-2.5 border border-midnight-border">
+              <div id="ticker-years" class="text-xl font-bold font-serif text-parchment">23</div>
+              <div class="text-[9px] uppercase tracking-wider text-gold-light/80 mt-0.5">Years</div>
+            </div>
+            <div class="bg-midnight-surface/80 rounded-2xl p-2.5 border border-midnight-border">
+              <div id="ticker-months" class="text-xl font-bold font-serif text-parchment">276</div>
+              <div class="text-[9px] uppercase tracking-wider text-gold-light/80 mt-0.5">Months</div>
+            </div>
+            <div class="bg-midnight-surface/80 rounded-2xl p-2.5 border border-midnight-border">
+              <div id="ticker-weeks" class="text-xl font-bold font-serif text-parchment">1,200</div>
+              <div class="text-[9px] uppercase tracking-wider text-gold-light/80 mt-0.5">Weeks</div>
+            </div>
+          </div>
+
+          <!-- Secondary Granular Breakdown -->
+          <div class="grid grid-cols-3 gap-2.5 text-center">
+            <div class="bg-midnight-surface/80 rounded-2xl p-2 border border-midnight-border">
+              <div id="ticker-days" class="text-sm font-semibold font-mono text-parchment">8,401</div>
+              <div class="text-[8px] uppercase tracking-wider text-parchment-muted/70">Total Days</div>
+            </div>
+            <div class="bg-midnight-surface/80 rounded-2xl p-2 border border-midnight-border">
+              <div id="ticker-hours" class="text-sm font-semibold font-mono text-parchment">201,624</div>
+              <div class="text-[8px] uppercase tracking-wider text-parchment-muted/70">Total Hours</div>
+            </div>
+            <div class="bg-midnight-surface/80 rounded-2xl p-2 border border-gold/30 bg-gold/5">
+              <div id="ticker-seconds-live" class="text-sm font-semibold font-mono text-gold-light animate-pulse">00</div>
+              <div class="text-[8px] uppercase tracking-wider text-gold font-medium">Secs Alive</div>
+            </div>
+          </div>
+
+          <!-- Total Minutes Bar -->
+          <div class="mt-3.5 pt-2.5 border-t border-midnight-border/60 flex justify-between items-center text-[10px] text-parchment-muted">
+            <span>Exact Total Elapsed:</span>
+            <span id="ticker-minutes-full" class="font-mono text-gold/90 font-medium">12,097,440 minutes</span>
+          </div>
+        </div>
+
+        <!-- 4 Historical Context Cards -->
+        <div class="space-y-2.5">
+          <p class="text-[10px] uppercase tracking-widest text-gold font-semibold px-1">Cosmic & Earthly Alignment</p>
+
+          <!-- Card 1: 1st Friday of Ramadan -->
+          <div class="p-3.5 rounded-2xl bg-midnight-card/70 border border-midnight-border hover:border-gold/40 transition-all flex gap-3.5 items-start">
+            <div class="w-9 h-9 rounded-xl bg-gold/10 border border-gold/25 flex-shrink-0 flex items-center justify-center text-gold text-base">
+              🕌
+            </div>
+            <div class="space-y-0.5">
+              <div class="flex items-center justify-between">
+                <h4 class="text-xs font-serif font-bold text-parchment">1st Friday of Ramadan 1424 AH</h4>
+                <span class="text-[9px] text-gold-light bg-gold/10 px-2 py-0.5 rounded-full">Sayyidul Ayyam</span>
+              </div>
+              <p class="text-[11px] text-parchment-muted leading-relaxed">
+                You were born on the most sacred day of the week in the most illuminated month of fasting and mercy, when gates of grace remain wide open.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2: 16 Kartik 1410 (Hemanta season in Sylhet) -->
+          <div class="p-3.5 rounded-2xl bg-midnight-card/70 border border-midnight-border hover:border-gold/40 transition-all flex gap-3.5 items-start">
+            <div class="w-9 h-9 rounded-xl bg-gold/10 border border-gold/25 flex-shrink-0 flex items-center justify-center text-gold text-base">
+              🍂
+            </div>
+            <div class="space-y-0.5">
+              <div class="flex items-center justify-between">
+                <h4 class="text-xs font-serif font-bold text-parchment">16 Kartik 1410 (Hemanta in Sylhet)</h4>
+                <span class="text-[9px] text-gold-light bg-gold/10 px-2 py-0.5 rounded-full">Autumn Dawn</span>
+              </div>
+              <p class="text-[11px] text-parchment-muted leading-relaxed">
+                The golden twilight season of Bengal. The aroma of night-flowering Shiuli blossoms and gentle mist settling over the lush tea valleys of Sylhet.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 3: 42% Waxing Crescent Moon -->
+          <div class="p-3.5 rounded-2xl bg-midnight-card/70 border border-midnight-border hover:border-gold/40 transition-all flex gap-3.5 items-start">
+            <div class="w-9 h-9 rounded-xl bg-gold/10 border border-gold/25 flex-shrink-0 flex items-center justify-center text-gold text-base">
+              🌒
+            </div>
+            <div class="space-y-0.5">
+              <div class="flex items-center justify-between">
+                <h4 class="text-xs font-serif font-bold text-parchment">42% Waxing Crescent Moon</h4>
+                <span class="text-[9px] text-gold-light bg-gold/10 px-2 py-0.5 rounded-full">Lunar Phase</span>
+              </div>
+              <p class="text-[11px] text-parchment-muted leading-relaxed">
+                Illuminating 42% of the sky on 6 Ramadan—a crescent growing steadily toward its full radiance, mirroring a life decreed to expand in virtue and artistry.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 4: Malaysian Leadership Coincidence -->
+          <div class="p-3.5 rounded-2xl bg-midnight-card/70 border border-midnight-border hover:border-gold/40 transition-all flex gap-3.5 items-start">
+            <div class="w-9 h-9 rounded-xl bg-gold/10 border border-gold/25 flex-shrink-0 flex items-center justify-center text-gold text-base">
+              🇲🇾
+            </div>
+            <div class="space-y-0.5">
+              <div class="flex items-center justify-between">
+                <h4 class="text-xs font-serif font-bold text-parchment">The Historic Malaysian Transition</h4>
+                <span class="text-[9px] text-gold-light bg-gold/10 px-2 py-0.5 rounded-full">Oct 31, 2003</span>
+              </div>
+              <p class="text-[11px] text-parchment-muted leading-relaxed">
+                On the exact Friday you entered the world, Malaysia completed a historic 22-year transition of leadership. Years later, this very soil is where I work and pray for your future.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- 3. THE ART GALLERY PHOTO & AUDIO PLAYER    -->
+      <!-- ========================================== -->
+      <section class="space-y-5">
+        <div class="text-center space-y-1">
+          <span class="text-[10px] tracking-[0.28em] uppercase text-gold font-semibold">Section II • Sanctuary</span>
+          <h2 class="text-2xl font-serif font-bold text-parchment">The Art & The Voice</h2>
+          <p class="text-xs text-parchment-muted/80 max-w-[320px] mx-auto">
+            A quiet sanctuary for an artist’s heart, holding hands across time and distance.
+          </p>
+        </div>
+
+        <!-- Master Museum Framed Canvas Placeholder -->
+        <div class="relative p-2 rounded-3xl bg-gradient-to-b from-gold/30 via-gold-dark/40 to-midnight-card border-2 border-gold/50 shadow-gold-glow">
+          
+          <!-- Inner Ornate Double Border -->
+          <div class="relative rounded-2xl p-3 bg-midnight-deep border border-gold/30 overflow-hidden">
+            
+            <!-- Corner Arabesque Accents -->
+            <div class="absolute top-1.5 left-1.5 text-gold/60 text-xs">❖</div>
+            <div class="absolute top-1.5 right-1.5 text-gold/60 text-xs">❖</div>
+            <div class="absolute bottom-1.5 left-1.5 text-gold/60 text-xs">❖</div>
+            <div class="absolute bottom-1.5 right-1.5 text-gold/60 text-xs">❖</div>
+
+            <!-- Vintage Hand-Holding Visual Canvas -->
+            <div id="photo-frame-container" class="relative w-full aspect-[4/3] rounded-xl overflow-hidden bg-gradient-to-br from-[#1E2E2A] via-[#142320] to-[#0A1210] flex items-center justify-center border border-gold/20 shadow-inner group">
+              
+              <!-- Sepia / Vintage Gold Overlay Canvas -->
+              <canvas id="hand-canvas" class="w-full h-full object-cover"></canvas>
+
+              <!-- Stylized Hand-Holding Artistic Illustration (SVG fallback/overlay) -->
+              <div id="artistic-illustration" class="absolute inset-0 flex flex-col items-center justify-center p-4 pointer-events-none text-center">
+                <svg class="w-20 h-20 text-gold/85 drop-shadow-[0_0_15px_rgba(197,160,89,0.5)] mb-2" viewBox="0 0 100 100" fill="none" stroke="currentColor">
+                  <!-- Two intertwined hands holding with gold kintsugi starlight -->
+                  <path d="M25 55 C 30 45, 45 42, 55 52 C 65 62, 75 55, 80 48" stroke-width="2.5" stroke-linecap="round"/>
+                  <path d="M20 62 C 28 50, 48 48, 58 58 C 66 66, 78 58, 85 52" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="2 3"/>
+                  <path d="M48 35 C 50 48, 55 58, 62 68" stroke-width="2" stroke-linecap="round"/>
+                  <!-- Floating Stars / Kintsugi Sparkles -->
+                  <circle cx="50" cy="50" r="1.5" fill="#FFF3D6"/>
+                  <circle cx="35" cy="40" r="1.2" fill="#C5A059"/>
+                  <circle cx="68" cy="45" r="1.8" fill="#E6CA85"/>
+                  <circle cx="78" cy="62" r="1.2" fill="#FFF3D6"/>
+                </svg>
+                <span class="text-[11px] font-serif text-parchment/90 tracking-wider italic">Two Hands, One Du'a</span>
+                <span class="text-[9px] text-gold/70 mt-0.5">Holding on through distance & devotion</span>
+              </div>
+
+              <!-- Upload / Replace Button for User's Real Hand-Holding Photo -->
+              <label for="photo-file-input" class="absolute bottom-2 right-2 bg-midnight-deep/80 hover:bg-midnight-card text-gold-light border border-gold/40 text-[9px] px-2.5 py-1 rounded-full cursor-pointer transition-all shadow-md flex items-center gap-1 backdrop-blur-sm no-tap-highlight z-20">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/>
+                </svg>
+                <span id="photo-btn-text">Personalize Photo</span>
+              </label>
+              <input type="file" id="photo-file-input" accept="image/*" class="hidden" onchange="handlePhotoUpload(event)">
+            </div>
+
+            <!-- Frame Caption & Dedication -->
+            <div class="mt-3 text-center space-y-0.5">
+              <p class="text-sm font-serif font-bold text-parchment tracking-wide">
+                “2020/2021 — Forever (Insha'Allah)”
+              </p>
+              <p class="text-[10px] text-gold/80 italic font-light">
+                To the artist whose touch turns silence into masterpieces.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Spotify / Voice-Note Style Audio Player -->
+        <div class="rounded-3xl bg-midnight-card border border-gold/30 p-4 shadow-emerald-deep space-y-3">
+          
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+              <div class="w-8 h-8 rounded-full bg-gold/15 border border-gold/40 flex items-center justify-center text-gold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z"/>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-xs font-semibold text-parchment">A Voice Note For Your 23rd</h4>
+                <p class="text-[9px] text-gold/80">From Minhaz • What you mean to me</p>
+              </div>
+            </div>
+            
+            <span class="text-[9px] font-mono px-2 py-0.5 rounded-full bg-gold/10 text-gold-light border border-gold/20">
+              VOICE MEMO
+            </span>
+          </div>
+
+          <!-- Animated Gold Waveform Display -->
+          <div class="bg-midnight-surface rounded-2xl p-3 border border-midnight-border flex items-center justify-between gap-1.5 h-14 px-4 overflow-hidden">
+            <!-- 28 Waveform Bars -->
+            <div class="wave-bar w-1 rounded-full bg-gold/40 h-2"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold/50 h-3"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold/70 h-5"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold h-7"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold-light h-4"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold/60 h-8"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold h-6"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold-light h-9"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold h-5"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold/50 h-7"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold h-4"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold-light h-8"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold h-6"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold/60 h-3"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold h-7"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold-light h-5"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold h-8"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold/40 h-4"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold h-6"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold-light h-9"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold h-5"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold/60 h-3"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold h-6"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold/50 h-4"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold h-7"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold/40 h-3"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold/60 h-5"></div>
+            <div class="wave-bar w-1 rounded-full bg-gold/40 h-2"></div>
+          </div>
+
+          <!-- Scrubbing Progress Bar & Timestamps -->
+          <div class="space-y-1">
+            <div class="w-full bg-midnight-surface h-1.5 rounded-full overflow-hidden cursor-pointer" onclick="seekAudio(event)">
+              <div id="audio-progress-bar" class="bg-gradient-to-r from-gold-dark via-gold to-gold-light h-full w-0 rounded-full transition-all duration-200"></div>
+            </div>
+            <div class="flex justify-between text-[9px] font-mono text-parchment-muted/80">
+              <span id="audio-current-time">0:00</span>
+              <span id="audio-status-tag" class="text-gold/80 italic font-sans">Tap Play for Ambient Oud & Words</span>
+              <span id="audio-total-duration">2:45</span>
+            </div>
+          </div>
+
+          <!-- Controls Row -->
+          <div class="flex items-center justify-between pt-1">
+            <!-- Custom Audio Upload / Replace Option -->
+            <label for="custom-audio-file" class="text-[9px] text-parchment-muted/80 hover:text-gold flex items-center gap-1 cursor-pointer no-tap-highlight">
+              <svg class="w-3.5 h-3.5 text-gold/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+              </svg>
+              <span id="audio-file-label">Attach Voice Note</span>
+            </label>
+            <input type="file" id="custom-audio-file" accept="audio/*" class="hidden" onchange="handleAudioUpload(event)">
+
+            <!-- Big Master Play Button -->
+            <button id="master-play-btn" onclick="toggleAudio()" class="w-11 h-11 rounded-full bg-gradient-to-tr from-gold-dark via-gold to-gold-light text-midnight-deep flex items-center justify-center shadow-gold-glow active:scale-90 transition-all duration-200 no-tap-highlight">
+              <span id="master-play-icon">
+                <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </span>
+            </button>
+
+            <!-- Reset / Restart Button -->
+            <button onclick="restartAudio()" class="text-[9px] text-parchment-muted/80 hover:text-gold flex items-center gap-1 no-tap-highlight">
+              <svg class="w-3.5 h-3.5 text-gold/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+              </svg>
+              <span>Replay</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- 4. THE 2,276 KM BRIDGE (DISTANCE & MAP)    -->
+      <!-- ========================================== -->
+      <section class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-[10px] tracking-[0.28em] uppercase text-gold font-semibold">Section III • The Horizon</span>
+          <h2 class="text-2xl font-serif font-bold text-parchment">The 2,276 km Bridge</h2>
+          <p class="text-xs text-parchment-muted/80 max-w-[320px] mx-auto">
+            From Kedah to Sylhet, across the Bay of Bengal. Distance is merely physical; our covenant is eternal.
+          </p>
+        </div>
+
+        <!-- Visual Flight Arc / Coordinate Card -->
+        <div class="rounded-3xl bg-midnight-card border border-gold/30 p-4 shadow-emerald-deep space-y-4">
+          
+          <!-- Distance Badge Header -->
+          <div class="flex items-center justify-between pb-3 border-b border-midnight-border">
+            <div>
+              <span class="text-[9px] uppercase tracking-wider text-gold-light/80 block">Separation Vector</span>
+              <span class="text-xl font-bold font-serif text-parchment">2,276 km</span>
+            </div>
+            <div class="text-right">
+              <span class="text-[9px] uppercase tracking-wider text-emerald-400 block">Time Offset</span>
+              <span class="text-xs font-mono text-gold-light">+2 Hours Ahead (MY)</span>
+            </div>
+          </div>
+
+          <!-- Stylized Map Trajectory Card -->
+          <div class="relative w-full h-40 bg-midnight-surface rounded-2xl border border-midnight-border overflow-hidden p-3 flex flex-col justify-between">
+            
+            <!-- Map Grid & Water Body Label -->
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#C5A059_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <span class="text-[10px] uppercase tracking-[0.3em] font-serif text-gold/20 font-bold">Bay of Bengal</span>
+            </div>
+
+            <!-- Stylized Flight Arc SVG -->
+            <svg class="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 350 160">
+              <!-- Trajectory curve -->
+              <path d="M 60 125 Q 175 25 290 45" fill="none" stroke="rgba(197, 160, 89, 0.4)" stroke-width="2" stroke-dasharray="4 4"/>
+              <!-- Animated Pulse Dot traveling along path -->
+              <circle cx="60" cy="125" r="4" fill="#C5A059"/>
+              <circle cx="290" cy="45" r="4" fill="#E6CA85"/>
+            </svg>
+
+            <!-- Coordinate Point 1: Alor Setar (Bottom Left) -->
+            <div class="relative z-10 self-start max-w-[150px]">
+              <div class="flex items-center gap-1.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-gold border border-gold-light animate-ping"></span>
+                <span class="text-xs font-serif font-bold text-parchment">Alor Setar</span>
+              </div>
+              <p class="text-[9px] text-gold/80 font-mono">6.14° N, 100.39° E</p>
+              <div class="mt-1 inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-midnight-card/80 border border-gold/20 text-[9px] font-mono text-parchment-muted">
+                <span>MYT:</span>
+                <span id="live-time-my" class="text-gold-light font-bold">--:--:--</span>
+              </div>
+            </div>
+
+            <!-- Coordinate Point 2: Sylhet (Top Right) -->
+            <div class="relative z-10 self-end text-right max-w-[150px]">
+              <div class="flex items-center justify-end gap-1.5">
+                <span class="text-xs font-serif font-bold text-parchment">Sylhet</span>
+                <span class="w-2.5 h-2.5 rounded-full bg-gold-light border border-gold animate-pulse"></span>
+              </div>
+              <p class="text-[9px] text-gold/80 font-mono">24.89° N, 91.87° E</p>
+              <div class="mt-1 inline-flex items-center gap-1 px-1.5 py-0.5 rounded bg-midnight-card/80 border border-gold/20 text-[9px] font-mono text-parchment-muted">
+                <span>BST:</span>
+                <span id="live-time-bd" class="text-gold-light font-bold">--:--:--</span>
+              </div>
+            </div>
+
+            <!-- Bottom Footnote -->
+            <div class="relative z-10 text-center text-[9px] text-gold/60 italic font-light pt-1">
+              Two cities, two skies, one unshakeable destination.
+            </div>
+          </div>
+
+          <!-- Relationship Timeline Milestones -->
+          <div class="pt-2 space-y-3">
+            <h4 class="text-[10px] uppercase tracking-widest text-gold font-semibold px-1">Timeline of Us</h4>
+
+            <!-- Milestone 1: Feb 2021 -->
+            <div class="relative pl-6 pb-2 border-l border-gold/30">
+              <div class="absolute -left-1.5 top-0 w-3 h-3 rounded-full bg-midnight-deep border-2 border-gold flex items-center justify-center">
+                <div class="w-1 h-1 rounded-full bg-gold"></div>
+              </div>
+              <span class="text-[9px] font-mono uppercase text-gold font-bold">February 2021</span>
+              <h5 class="text-xs font-serif font-bold text-parchment">The First Spark</h5>
+              <p class="text-[11px] text-parchment-muted leading-relaxed mt-0.5">
+                The quiet beginning of conversations that changed two destinies. What started as simple words quickly became our sanctuary.
+              </p>
+            </div>
+
+            <!-- Milestone 2: Post-Eid 2023 -->
+            <div class="relative pl-6 pb-2 border-l border-gold/30">
+              <div class="absolute -left-1.5 top-0 w-3 h-3 rounded-full bg-midnight-deep border-2 border-gold flex items-center justify-center">
+                <div class="w-1 h-1 rounded-full bg-gold"></div>
+              </div>
+              <span class="text-[9px] font-mono uppercase text-gold font-bold">Post-Eid 2023</span>
+              <h5 class="text-xs font-serif font-bold text-parchment">The Crucible</h5>
+              <p class="text-[11px] text-parchment-muted leading-relaxed mt-0.5">
+                When life tested our bond with distance and hardship. We did not break; we were purified and forged into an unbreakable loyalty.
+              </p>
+            </div>
+
+            <!-- Milestone 3: Today -->
+            <div class="relative pl-6 pb-2 border-l border-gold/30">
+              <div class="absolute -left-1.5 top-0 w-3 h-3 rounded-full bg-midnight-deep border-2 border-gold-light flex items-center justify-center">
+                <div class="w-1 h-1 rounded-full bg-gold-light animate-ping"></div>
+              </div>
+              <span class="text-[9px] font-mono uppercase text-gold-light font-bold">October 31, 2026</span>
+              <h5 class="text-xs font-serif font-bold text-parchment">23rd Birthday Across The Distance</h5>
+              <p class="text-[11px] text-parchment-muted leading-relaxed mt-0.5">
+                Honoring your 23rd year. Separated by 2,276 km, but carried in every single prostration and prayer.
+              </p>
+            </div>
+
+            <!-- Milestone 4: Target 0 km -->
+            <div class="relative pl-6">
+              <div class="absolute -left-1.5 top-0 w-3 h-3 rounded-full bg-gold border-2 border-gold-light shadow-gold-glow"></div>
+              <span class="text-[9px] font-mono uppercase text-gold-light font-bold">The Horizon</span>
+              <h5 class="text-xs font-serif font-bold text-gold-light">0 km • Under One Roof (Nikah)</h5>
+              <p class="text-[11px] text-parchment leading-relaxed mt-0.5">
+                The promised sanctuary. No more airport departures or screen borders. Just peace, a shared home, and a lifetime together. Insha'Allah.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- 5. VERSES FOR OUR FUTURE (5 DECK CARDS)    -->
+      <!-- ========================================== -->
+      <section class="space-y-4">
+        <div class="text-center space-y-1">
+          <span class="text-[10px] tracking-[0.28em] uppercase text-gold font-semibold">Section IV • Wisdom</span>
+          <h2 class="text-2xl font-serif font-bold text-parchment">Verses for Our Future</h2>
+          <p class="text-xs text-parchment-muted/80 max-w-[320px] mx-auto">
+            Anchored in Divine revelation, prophetic guidance, and timeless love. Toggle languages to reflect.
+          </p>
+        </div>
+
+        <!-- 5 Interactive Reflection Cards -->
+        <div class="space-y-4">
+
+          <!-- Card 1: Time & Sabr (Surah Al-Asr) -->
+          <div class="rounded-3xl bg-midnight-card border border-gold/30 p-4 space-y-3 shadow-emerald-deep">
+            <div class="flex items-center justify-between pb-2 border-b border-midnight-border">
+              <span class="text-[10px] font-serif text-gold font-medium">Card 1 • The Sanctity of Time</span>
+              <span class="text-[9px] font-mono text-parchment-muted">Al-Asr 103:1-3</span>
+            </div>
+
+            <!-- Arabic Calligraphy -->
+            <div class="text-right py-2 font-arabic text-lg text-gold leading-loose tracking-wide">
+              وَالْعَصْرِ ۝ إِنَّ الْإِنسَانَ لَفِي خُسْرٍ ۝ إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ
+            </div>
+
+            <!-- Language Switcher Tabs -->
+            <div class="flex gap-2 text-[10px] border-b border-midnight-border/60 pb-2">
+              <button onclick="switchLang('card1', 'en')" id="card1-tab-en" class="text-gold font-semibold border-b border-gold pb-0.5">English</button>
+              <button onclick="switchLang('card1', 'bn')" id="card1-tab-bn" class="text-parchment-muted hover:text-gold pb-0.5">বাংলা (Bengali)</button>
+            </div>
+
+            <!-- Translations -->
+            <div id="card1-content-en" class="text-[12px] text-parchment-muted leading-relaxed font-light">
+              “By time, indeed, mankind is in loss, except for those who have believed and done righteous deeds and advised each other to truth and advised each other to patience.”
+            </div>
+            <div id="card1-content-bn" class="hidden text-[12px] text-parchment font-bengali leading-relaxed">
+              “সময়ের শপথ! নিশ্চয় মানুষ ক্ষতির মধ্যে নিমজ্জিত। কিন্তু তারা নয়, যারা ঈমান এনেছে, সৎকাজ করেছে এবং পরস্পরকে সত্যের উপদেশ দিয়েছে ও ধৈর্যের উপদেশ দিয়েছে।”
+            </div>
+
+            <!-- Personal Reflection Note -->
+            <div class="p-2.5 rounded-xl bg-midnight-surface/80 border border-gold/20 text-[11px] text-gold-light/90 italic">
+              <span class="font-serif font-bold text-gold not-italic">Minhaz's Note:</span> 
+              Time is not our enemy, Tasu. Every single day of distance is an investment in Sabr, teaching us that what is built on truth and patience will stand firm for a lifetime.
+            </div>
+          </div>
+
+          <!-- Card 2: Sakinah & Garments (Surah Ar-Rum & Al-Baqarah) -->
+          <div class="rounded-3xl bg-midnight-card border border-gold/30 p-4 space-y-3 shadow-emerald-deep">
+            <div class="flex items-center justify-between pb-2 border-b border-midnight-border">
+              <span class="text-[10px] font-serif text-gold font-medium">Card 2 • Sakinah & Garments</span>
+              <span class="text-[9px] font-mono text-parchment-muted">Ar-Rum 30:21 • Al-Baqarah 2:187</span>
+            </div>
+
+            <!-- Arabic Calligraphy -->
+            <div class="text-right py-2 font-arabic text-lg text-gold leading-loose tracking-wide">
+              وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ... هُنَّ لِبَاسٌ لَّكُمْ وَأَنتُمْ لِبَاسٌ لَّهُنَّ
+            </div>
+
+            <!-- Language Switcher Tabs -->
+            <div class="flex gap-2 text-[10px] border-b border-midnight-border/60 pb-2">
+              <button onclick="switchLang('card2', 'en')" id="card2-tab-en" class="text-gold font-semibold border-b border-gold pb-0.5">English</button>
+              <button onclick="switchLang('card2', 'bn')" id="card2-tab-bn" class="text-parchment-muted hover:text-gold pb-0.5">বাংলা (Bengali)</button>
+            </div>
+
+            <!-- Translations -->
+            <div id="card2-content-en" class="text-[12px] text-parchment-muted leading-relaxed font-light">
+              “And of His signs is that He created for you mates that you may find tranquility in them; and He placed between you affection and mercy... They are clothing for you and you are clothing for them.”
+            </div>
+            <div id="card2-content-bn" class="hidden text-[12px] text-parchment font-bengali leading-relaxed">
+              “এবং তাঁর নিদর্শনাবলীর মধ্যে রয়েছে যে, তিনি তোমাদের মধ্য হতেই সৃষ্টি করেছেন তোমাদের সঙ্গিনী যাতে তোমরা তাদের কাছে প্রশান্তি পাও এবং তোমাদের মাঝে পারস্পরিক ভালোবাসা ও দয়া সৃষ্টি করেছেন... তারা তোমাদের পোশাক এবং তোমরা তাদের পোশাক।”
+            </div>
+
+            <!-- Personal Reflection Note -->
+            <div class="p-2.5 rounded-xl bg-midnight-surface/80 border border-gold/20 text-[11px] text-gold-light/90 italic">
+              <span class="font-serif font-bold text-gold not-italic">Minhaz's Note:</span> 
+              You are my tranquility (Sakinah). To be your garment means to shelter your dreams, protect your honor, and keep your gentle heart warm whenever the world feels cold.
+            </div>
+          </div>
+
+          <!-- Card 3: Character & Loyalty (Sahih Muslim 1467) -->
+          <div class="rounded-3xl bg-midnight-card border border-gold/30 p-4 space-y-3 shadow-emerald-deep">
+            <div class="flex items-center justify-between pb-2 border-b border-midnight-border">
+              <span class="text-[10px] font-serif text-gold font-medium">Card 3 • The Priceless Treasure</span>
+              <span class="text-[9px] font-mono text-parchment-muted">Sahih Muslim 1467</span>
+            </div>
+
+            <!-- Arabic Calligraphy -->
+            <div class="text-right py-2 font-arabic text-lg text-gold leading-loose tracking-wide">
+              الدُّنْيَا مَتَاعٌ وَخَيْرُ مَتَاعِ الدُّنْيَا الْمَرْأَةُ الصَّالِحَةُ
+            </div>
+
+            <!-- Language Switcher Tabs -->
+            <div class="flex gap-2 text-[10px] border-b border-midnight-border/60 pb-2">
+              <button onclick="switchLang('card3', 'en')" id="card3-tab-en" class="text-gold font-semibold border-b border-gold pb-0.5">English</button>
+              <button onclick="switchLang('card3', 'bn')" id="card3-tab-bn" class="text-parchment-muted hover:text-gold pb-0.5">বাংলা (Bengali)</button>
+            </div>
+
+            <!-- Translations -->
+            <div id="card3-content-en" class="text-[12px] text-parchment-muted leading-relaxed font-light">
+              “The whole world is a pleasure, and the best treasure of this world is the righteous woman.”
+            </div>
+            <div id="card3-content-bn" class="hidden text-[12px] text-parchment font-bengali leading-relaxed">
+              “সমগ্র পৃথিবীটাই পার্থিব সম্পদ, আর এই পৃথিবীর সর্বশ্রেষ্ঠ সম্পদ হলো এক পুণ্যময়ী নারী।”
+            </div>
+
+            <!-- Personal Reflection Note -->
+            <div class="p-2.5 rounded-xl bg-midnight-surface/80 border border-gold/20 text-[11px] text-gold-light/90 italic">
+              <span class="font-serif font-bold text-gold not-italic">Minhaz's Note:</span> 
+              Your integrity, your quiet dignity, and your deep faith make you the highest gift Allah has brought into my life. That is why waiting and striving for you is an honor.
+            </div>
+          </div>
+
+          <!-- Card 4: Patience in Hardship (Al-Baqarah 2:153 & Ash-Sharh 94:5-6) -->
+          <div class="rounded-3xl bg-midnight-card border border-gold/30 p-4 space-y-3 shadow-emerald-deep">
+            <div class="flex items-center justify-between pb-2 border-b border-midnight-border">
+              <span class="text-[10px] font-serif text-gold font-medium">Card 4 • Ease After Hardship</span>
+              <span class="text-[9px] font-mono text-parchment-muted">Ash-Sharh 94:5-6</span>
+            </div>
+
+            <!-- Arabic Calligraphy -->
+            <div class="text-right py-2 font-arabic text-lg text-gold leading-loose tracking-wide">
+              يَا أَيُّهَا الَّذِينَ آمَنُوا اسْتَعِينُوا بِالصَّبْرِ وَالصَّلَاةِ ۚ إِنَّ اللَّهَ مَعَ الصَّابِرِينَ ... فَإِنَّ مَعَ الْعُسْرِ يُسْرًا ۝ إِنَّ مَعَ الْعُسْرِ يُسْرًا
+            </div>
+
+            <!-- Language Switcher Tabs -->
+            <div class="flex gap-2 text-[10px] border-b border-midnight-border/60 pb-2">
+              <button onclick="switchLang('card4', 'en')" id="card4-tab-en" class="text-gold font-semibold border-b border-gold pb-0.5">English</button>
+              <button onclick="switchLang('card4', 'bn')" id="card4-tab-bn" class="text-parchment-muted hover:text-gold pb-0.5">বাংলা (Bengali)</button>
+            </div>
+
+            <!-- Translations -->
+            <div id="card4-content-en" class="text-[12px] text-parchment-muted leading-relaxed font-light">
+              “O you who have believed, seek help through patience and prayer. Indeed, Allah is with the patient... For indeed, with hardship comes ease. Indeed, with hardship comes ease.”
+            </div>
+            <div id="card4-content-bn" class="hidden text-[12px] text-parchment font-bengali leading-relaxed">
+              “হে মুমিনগণ, তোমরা ধৈর্য ও নামাজের মাধ্যমে সাহায্য প্রার্থনা করো। নিশ্চয়ই আল্লাহ ধৈর্যশীলদের সাথে আছেন... অতএব কষ্টের সাথেই তো রয়েছে স্বস্তি। নিশ্চয় কষ্টের সাথেই স্বস্তি আছে।”
+            </div>
+
+            <!-- Personal Reflection Note -->
+            <div class="p-2.5 rounded-xl bg-midnight-surface/80 border border-gold/20 text-[11px] text-gold-light/90 italic">
+              <span class="font-serif font-bold text-gold not-italic">Minhaz's Note:</span> 
+              Notice how Allah repeated it twice. The difficulties and the distance are not punishments; they are the fertile soil where our future ease and union are taking root.
+            </div>
+          </div>
+
+          <!-- Card 5: Soul & Art (Rumi Inspired) -->
+          <div class="rounded-3xl bg-midnight-card border border-gold/30 p-4 space-y-3 shadow-emerald-deep">
+            <div class="flex items-center justify-between pb-2 border-b border-midnight-border">
+              <span class="text-[10px] font-serif text-gold font-medium">Card 5 • Soul & Light</span>
+              <span class="text-[9px] font-mono text-parchment-muted">Mawlana Rumi</span>
+            </div>
+
+            <!-- Arabic / Persian Reflection Quote -->
+            <div class="text-center py-2 font-serif italic text-gold text-sm leading-relaxed">
+              “Goodbyes are only for those who love with their eyes. Because for those who love with heart and soul, there is no separation.”
+            </div>
+
+            <!-- Language Switcher Tabs -->
+            <div class="flex gap-2 text-[10px] border-b border-midnight-border/60 pb-2">
+              <button onclick="switchLang('card5', 'en')" id="card5-tab-en" class="text-gold font-semibold border-b border-gold pb-0.5">English</button>
+              <button onclick="switchLang('card5', 'bn')" id="card5-tab-bn" class="text-parchment-muted hover:text-gold pb-0.5">বাংলা (Bengali)</button>
+            </div>
+
+            <!-- Translations -->
+            <div id="card5-content-en" class="text-[12px] text-parchment-muted leading-relaxed font-light">
+              “The light you seek is already inside your heart. Never let the noise of this world dull the brilliance of your art or the purity of your soul.”
+            </div>
+            <div id="card5-content-bn" class="hidden text-[12px] text-parchment font-bengali leading-relaxed">
+              “বিদায় কেবল তাদের জন্য যারা চোখের দেখায় ভালোবাসে। কারণ যারা হৃদয় ও আত্মা দিয়ে ভালোবাসে, তাদের মাঝে বিচ্ছেদ বলে কোনো শব্দ নেই।”
+            </div>
+
+            <!-- Personal Reflection Note -->
+            <div class="p-2.5 rounded-xl bg-midnight-surface/80 border border-gold/20 text-[11px] text-gold-light/90 italic">
+              <span class="font-serif font-bold text-gold not-italic">Minhaz's Note:</span> 
+              You see the world like a canvas, Tasu. Keep painting, keep dreaming, and never doubt your worth. I will always stand as the shield for your art and your heart.
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
+      <!-- ========================================== -->
+      <!-- 6. CLOSING DUA & INTERACTIVE AMEEN         -->
+      <!-- ========================================== -->
+      <section class="space-y-5 pt-4">
+        <div class="text-center space-y-1">
+          <span class="text-[10px] tracking-[0.28em] uppercase text-gold font-semibold">Section V • Supplication</span>
+          <h2 class="text-2xl font-serif font-bold text-parchment">Closing Du'a</h2>
+          <p class="text-xs text-parchment-muted/80 max-w-[320px] mx-auto">
+            A prayer sealed with faith, hope, and an eternal promise.
+          </p>
+        </div>
+
+        <!-- Master Du'a Parchment Card -->
+        <div class="rounded-3xl bg-midnight-card border-2 border-gold/40 p-5 space-y-4 shadow-gold-glow relative overflow-hidden">
+          
+          <div class="text-center py-2 border-b border-midnight-border/70">
+            <span class="font-arabic text-xl text-gold-light tracking-wide leading-loose">
+              اللَّهُمَّ بَارِكْ لَهَا فِي عُمْرِهَا وَفِي رِزْقِهَا وَفِي إِيمَانِهَا
+            </span>
+            <p class="text-[10px] text-gold/70 mt-1 uppercase tracking-wider">A Prayer for Tasnia’s 23rd Year</p>
+          </div>
+
+          <div class="text-[12px] text-parchment leading-relaxed space-y-2.5 font-light">
+            <p>
+              <strong class="font-serif text-gold font-semibold">O Allah,</strong> bless Tasnia Yeasmin Suraiya as she steps into her 23rd year. Envelope her soul in unwaivering peace, grant radiant health to her body, and protect her tender heart from the sorrows and betrayals of this world.
+            </p>
+            <p>
+              Bless her hands and her imagination with boundless creative barakah; make her art a source of joy and elevation. Protect her parents, honor her sacrifices, and grant her ease in every silent hardship she bears.
+            </p>
+            <p>
+              And Ya Rabb, bridge our 2,276 kilometers in Your divine timing. Unite our hearts under Your shade, bless our intentions with Nikah, and grant us a home filled with laughter, mercy, and devotion to You.
+            </p>
+          </div>
+
+          <!-- Interactive Tap to Say Ameen Button -->
+          <div class="pt-2">
+            <button id="ameen-btn" onclick="triggerAmeen()" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-gold-dark via-gold to-gold-light text-midnight-deep font-serif font-bold text-base tracking-wide shadow-gold-glow active:scale-95 transition-all duration-300 flex items-center justify-center gap-2 group no-tap-highlight">
+              <span id="ameen-btn-icon">🤲</span>
+              <span id="ameen-btn-text">Tap to Say Ameen</span>
+            </button>
+            <p class="text-[10px] text-center text-parchment-muted/60 mt-2">
+              Seals this prayer with golden stars
+            </p>
+          </div>
+
+          <!-- Hidden Revealed Message Box (Unlocked upon Ameen) -->
+          <div id="unlocked-message-box" class="hidden transition-all duration-700 ease-out pt-4 mt-4 border-t border-gold/40">
+            <div class="p-4 rounded-2xl bg-midnight-deep/90 border border-gold/50 shadow-gold-glow text-center space-y-2.5">
+              <div class="w-7 h-7 rounded-full bg-gold/20 text-gold mx-auto flex items-center justify-center text-xs">
+                ✨
+              </div>
+              <h3 class="text-sm font-serif font-bold text-gold-light">Happy 23rd Birthday, Tasu.</h3>
+              <p class="text-xs text-parchment leading-relaxed italic">
+                “Sorry I'm a little late today—I'm spending my time building a life worth your wait.”
+              </p>
+              <div class="pt-2 text-[10px] text-gold/80 font-mono tracking-wider border-t border-midnight-border/70">
+                — Minhaz, Alor Setar • With All My Soul
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- Footer Anchor -->
+      <footer class="pt-6 pb-4 text-center border-t border-midnight-border/60 text-[10px] text-parchment-muted/60 space-y-1">
+        <p class="font-serif italic text-gold/70">“For what Allah brings together, no distance can diminish.”</p>
+        <p>© 2003–2026 Tasnia Yeasmin Suraiya • Alor Setar ➔ Sylhet</p>
+      </footer>
+
+    </main>
+
+  </div>
+
+  <!-- Audio Tone Synthesizer & Logic (Ambient Oud & Piano Web Audio Engine) -->
+  <script>
+    /* ========================================================= */
+    /* LIVE TICKER CALCULATIONS (From Oct 31, 2003, Sylhet Time) */
+    /* ========================================================= */
+    // Sylhet is UTC+6. October 31, 2003 00:00:00 UTC+6 is October 30, 2003 18:00:00 UTC
+    const BIRTH_DATE = new Date('2003-10-31T00:00:00+06:00');
+
+    function updateLiveTickers() {
+      const now = new Date();
+      const diffMs = now - BIRTH_DATE;
+
+      if (diffMs > 0) {
+        const totalSeconds = Math.floor(diffMs / 1000);
+        const totalMinutes = Math.floor(totalSeconds / 60);
+        const totalHours = Math.floor(totalMinutes / 60);
+        const totalDays = Math.floor(totalHours / 24);
+        const totalWeeks = Math.floor(totalDays / 7);
+        const totalMonths = Math.floor(totalDays / 30.4375);
+        
+        // Accurate Age in Years
+        let years = now.getFullYear() - BIRTH_DATE.getFullYear();
+        const m = now.getMonth() - BIRTH_DATE.getMonth();
+        if (m < 0 || (m === 0 && now.getDate() < BIRTH_DATE.getDate())) {
+          years--;
+        }
+
+        const currentSecMod = totalSeconds % 60;
+
+        // Populate DOM elements
+        const yrEl = document.getElementById('ticker-years');
+        const moEl = document.getElementById('ticker-months');
+        const wkEl = document.getElementById('ticker-weeks');
+        const dyEl = document.getElementById('ticker-days');
+        const hrEl = document.getElementById('ticker-hours');
+        const scEl = document.getElementById('ticker-seconds-live');
+        const mnFullEl = document.getElementById('ticker-minutes-full');
+
+        if (yrEl) yrEl.textContent = years;
+        if (moEl) moEl.textContent = totalMonths.toLocaleString();
+        if (wkEl) wkEl.textContent = totalWeeks.toLocaleString();
+        if (dyEl) dyEl.textContent = totalDays.toLocaleString();
+        if (hrEl) hrEl.textContent = totalHours.toLocaleString();
+        if (scEl) scEl.textContent = currentSecMod < 10 ? '0' + currentSecMod : currentSecMod;
+        if (mnFullEl) mnFullEl.textContent = totalMinutes.toLocaleString() + ' minutes';
+      }
+
+      // Dual Live Time Clocks
+      updateDualClocks();
+    }
+
+    function updateDualClocks() {
+      const now = new Date();
+
+      // Malaysia (UTC+8)
+      const myTimeStr = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Asia/Kuala_Lumpur',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      }).format(now);
+
+      // Bangladesh (UTC+6)
+      const bdTimeStr = new Intl.DateTimeFormat('en-GB', {
+        timeZone: 'Asia/Dhaka',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+      }).format(now);
+
+      const myEl = document.getElementById('live-time-my');
+      const bdEl = document.getElementById('live-time-bd');
+      if (myEl) myEl.textContent = myTimeStr;
+      if (bdEl) bdEl.textContent = bdTimeStr;
+    }
+
+    setInterval(updateLiveTickers, 1000);
+    updateLiveTickers();
+
+    /* ========================================================= */
+    /* GATEWAY UNLOCK / OPEN CHAPTER TRANSITION                  */
+    /* ========================================================= */
+    function openChapter() {
+      const gateway = document.getElementById('gateway-screen');
+      if (gateway) {
+        gateway.style.transform = 'translateY(-100%)';
+        gateway.style.opacity = '0';
+        setTimeout(() => {
+          gateway.style.display = 'none';
+        }, 1000);
+      }
+
+      // Play soft celebratory chime
+      playHapticTone(523.25, 'triangle', 0.5); // C5
+      setTimeout(() => playHapticTone(659.25, 'sine', 0.6), 180); // E5
+      setTimeout(() => playHapticTone(783.99, 'sine', 0.8), 360); // G5
+    }
+
+    /* ========================================================= */
+    /* LANGUAGE SWITCHER TABS                                    */
+    /* ========================================================= */
+    function switchLang(cardId, lang) {
+      const enContent = document.getElementById(`${cardId}-content-en`);
+      const bnContent = document.getElementById(`${cardId}-content-bn`);
+      const enTab = document.getElementById(`${cardId}-tab-en`);
+      const bnTab = document.getElementById(`${cardId}-tab-bn`);
+
+      if (!enContent || !bnContent) return;
+
+      if (lang === 'bn') {
+        enContent.classList.add('hidden');
+        bnContent.classList.remove('hidden');
+        bnTab.classList.add('text-gold', 'font-semibold', 'border-b', 'border-gold');
+        bnTab.classList.remove('text-parchment-muted');
+        enTab.classList.remove('text-gold', 'font-semibold', 'border-b', 'border-gold');
+        enTab.classList.add('text-parchment-muted');
+      } else {
+        bnContent.classList.add('hidden');
+        enContent.classList.remove('hidden');
+        enTab.classList.add('text-gold', 'font-semibold', 'border-b', 'border-gold');
+        enTab.classList.remove('text-parchment-muted');
+        bnTab.classList.remove('text-gold', 'font-semibold', 'border-b', 'border-gold');
+        bnTab.classList.add('text-parchment-muted');
+      }
+    }
+
+    /* ========================================================= */
+    /* INTERACTIVE AMEEN & GOLD CONFETTI CELEBRATION             */
+    /* ========================================================= */
+    let ameenCount = 0;
+    function triggerAmeen() {
+      ameenCount++;
+      const btn = document.getElementById('ameen-btn');
+      const btnText = document.getElementById('ameen-btn-text');
+      const btnIcon = document.getElementById('ameen-btn-icon');
+      const messageBox = document.getElementById('unlocked-message-box');
+
+      // Confetti burst in antique gold, emerald, and starlight white
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 80,
+          spread: 70,
+          origin: { y: 0.85 },
+          colors: ['#C5A059', '#E6CA85', '#FFF3D6', '#2A6F55', '#D8B26E']
+        });
+
+        // Double cascade
+        setTimeout(() => {
+          confetti({
+            particleCount: 50,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 },
+            colors: ['#C5A059', '#E6CA85', '#FFFFFF']
+          });
+          confetti({
+            particleCount: 50,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 },
+            colors: ['#C5A059', '#E6CA85', '#FFFFFF']
+          });
+        }, 250);
+      }
+
+      // Audio chord
+      playHapticTone(440, 'sine', 0.6); // A4
+      setTimeout(() => playHapticTone(554.37, 'sine', 0.6), 150); // C#5
+      setTimeout(() => playHapticTone(659.25, 'sine', 0.8), 300); // E5
+
+      // Reveal hidden message
+      if (messageBox) {
+        messageBox.classList.remove('hidden');
+        messageBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      // Update button state
+      if (btnText) btnText.textContent = `Ameen Ya Rabb (${ameenCount})`;
+      if (btnIcon) btnIcon.textContent = '✨';
+    }
+
+    /* ========================================================= */
+    /* WEB AUDIO AMBIENT SOUND GENERATOR & AUDIO CONTROLS        */
+    /* ========================================================= */
+    let audioCtx = null;
+    let isPlaying = false;
+    let melodyInterval = null;
+    let userAudioElement = null;
+    let audioCurrentSeconds = 0;
+    const AUDIO_MAX_SECONDS = 165; // 2:45
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playHapticTone(freq, type = 'sine', duration = 0.5) {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+
+        gain.gain.setValueAtTime(0.12, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {
+        console.warn('Audio not allowed yet:', e);
+      }
+    }
+
+    // Gentle emotional acoustic scale (Maqam / Pentatonic warmth)
+    const melodyScale = [
+      220.00, // A3
+      246.94, // B3
+      277.18, // C#4
+      329.63, // E4
+      369.99, // F#4
+      440.00, // A4
+      554.37  // C#5
+    ];
+
+    function startMelodyLoop() {
+      if (melodyInterval) clearInterval(melodyInterval);
+      let step = 0;
+      melodyInterval = setInterval(() => {
+        if (!isPlaying) return;
+        const note = melodyScale[step % melodyScale.length];
+        playHapticTone(note, 'triangle', 1.8);
+        step++;
+
+        // Update progress bar
+        audioCurrentSeconds++;
+        if (audioCurrentSeconds > AUDIO_MAX_SECONDS) audioCurrentSeconds = 0;
+        updateAudioProgressUI();
+      }, 1000);
+    }
+
+    function stopMelodyLoop() {
+      if (melodyInterval) {
+        clearInterval(melodyInterval);
+        melodyInterval = null;
+      }
+    }
+
+    function toggleAudio() {
+      if (userAudioElement) {
+        if (userAudioElement.paused) {
+          userAudioElement.play();
+          setAudioPlayingState(true);
+        } else {
+          userAudioElement.pause();
+          setAudioPlayingState(false);
+        }
+        return;
+      }
+
+      // Synth Mode
+      getAudioContext();
+      isPlaying = !isPlaying;
+      setAudioPlayingState(isPlaying);
+
+      if (isPlaying) {
+        startMelodyLoop();
+      } else {
+        stopMelodyLoop();
+      }
+    }
+
+    function restartAudio() {
+      audioCurrentSeconds = 0;
+      updateAudioProgressUI();
+      if (userAudioElement) {
+        userAudioElement.currentTime = 0;
+        userAudioElement.play();
+        setAudioPlayingState(true);
+      } else {
+        isPlaying = true;
+        setAudioPlayingState(true);
+        startMelodyLoop();
+      }
+    }
+
+    function setAudioPlayingState(playing) {
+      isPlaying = playing;
+      const masterIcon = document.getElementById('master-play-icon');
+      const quickIcon = document.getElementById('quick-audio-icon');
+      const quickLabel = document.getElementById('quick-audio-label');
+      const statusTag = document.getElementById('audio-status-tag');
+      const waveBars = document.querySelectorAll('.wave-bar');
+
+      if (playing) {
+        if (masterIcon) masterIcon.innerHTML = `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+        if (quickIcon) quickIcon.innerHTML = `<svg class="w-3 h-3 text-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+        if (quickLabel) quickLabel.textContent = 'Pause';
+        if (statusTag) statusTag.textContent = 'Playing: For Tasu with Love ♬';
+
+        waveBars.forEach((bar, idx) => {
+          bar.classList.add('wave-playing');
+          bar.style.animationDelay = `${(idx % 6) * 0.15}s`;
+        });
+      } else {
+        if (masterIcon) masterIcon.innerHTML = `<svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>`;
+        if (quickIcon) quickIcon.innerHTML = `<svg class="w-3 h-3 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`;
+        if (quickLabel) quickLabel.textContent = 'Play Note';
+        if (statusTag) statusTag.textContent = 'Paused';
+
+        waveBars.forEach(bar => bar.classList.remove('wave-playing'));
+      }
+    }
+
+    function updateAudioProgressUI() {
+      const curTimeEl = document.getElementById('audio-current-time');
+      const progressBar = document.getElementById('audio-progress-bar');
+      const totalSec = userAudioElement ? (userAudioElement.duration || AUDIO_MAX_SECONDS) : AUDIO_MAX_SECONDS;
+      const curSec = userAudioElement ? userAudioElement.currentTime : audioCurrentSeconds;
+
+      const mins = Math.floor(curSec / 60);
+      const secs = Math.floor(curSec % 60);
+      if (curTimeEl) curTimeEl.textContent = `${mins}:${secs < 10 ? '0' + secs : secs}`;
+
+      if (progressBar && totalSec > 0) {
+        const percent = Math.min(100, (curSec / totalSec) * 100);
+        progressBar.style.width = `${percent}%`;
+      }
+    }
+
+    function seekAudio(e) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const pct = Math.max(0, Math.min(1, clickX / rect.width));
+
+      if (userAudioElement) {
+        userAudioElement.currentTime = pct * (userAudioElement.duration || AUDIO_MAX_SECONDS);
+      } else {
+        audioCurrentSeconds = Math.floor(pct * AUDIO_MAX_SECONDS);
+      }
+      updateAudioProgressUI();
+    }
+
+    function handleAudioUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const url = URL.createObjectURL(file);
+        if (!userAudioElement) {
+          userAudioElement = new Audio();
+          userAudioElement.ontimeupdate = updateAudioProgressUI;
+          userAudioElement.onended = () => setAudioPlayingState(false);
+        }
+        userAudioElement.src = url;
+        stopMelodyLoop();
+        userAudioElement.play();
+        setAudioPlayingState(true);
+        const label = document.getElementById('audio-file-label');
+        if (label) label.textContent = 'Audio Loaded ✓';
+      }
+    }
+
+    /* ========================================================= */
+    /* VINTAGE CANVAS DRAWING & CUSTOM PHOTO UPLOADER            */
+    /* ========================================================= */
+    function initVintageCanvas() {
+      const canvas = document.getElementById('hand-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const width = canvas.width = 400;
+      const height = canvas.height = 300;
+
+      // Dark emerald textured base
+      const grad = ctx.createLinearGradient(0, 0, width, height);
+      grad.addColorStop(0, '#101C18');
+      grad.addColorStop(0.5, '#172723');
+      grad.addColorStop(1, '#0C1513');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, width, height);
+
+      // Subtle warm vignette and stars
+      for (let i = 0; i < 45; i++) {
+        const x = Math.random() * width;
+        const y = Math.random() * height;
+        const r = Math.random() * 1.5;
+        ctx.fillStyle = 'rgba(197, 160, 89, ' + (Math.random() * 0.4 + 0.1) + ')';
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // Check localStorage for saved custom photo
+      const savedPhoto = localStorage.getItem('whoistasnia_custom_photo');
+      if (savedPhoto) {
+        renderCustomPhoto(savedPhoto);
+      }
+    }
+
+    function handlePhotoUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const imgData = e.target.result;
+          try {
+            localStorage.setItem('whoistasnia_custom_photo', imgData);
+          } catch (err) {
+            console.warn('Storage limit reached, showing directly without persistence');
+          }
+          renderCustomPhoto(imgData);
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    function renderCustomPhoto(dataUrl) {
+      const canvas = document.getElementById('hand-canvas');
+      const illustration = document.getElementById('artistic-illustration');
+      const btnText = document.getElementById('photo-btn-text');
+      if (!canvas) return;
+
+      const ctx = canvas.getContext('2d');
+      const img = new Image();
+      img.onload = function() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Draw image covering canvas with sepia tone
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        // Apply vintage warm sepia-gold glaze
+        ctx.fillStyle = 'rgba(197, 160, 89, 0.15)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        if (illustration) illustration.style.display = 'none';
+        if (btnText) btnText.textContent = 'Change Photo';
+      };
+      img.src = dataUrl;
+    }
+
+    // Initialize Canvas on Load
+    window.addEventListener('DOMContentLoaded', () => {
+      initVintageCanvas();
+    });
+  </script>
+</body>
+</html>
