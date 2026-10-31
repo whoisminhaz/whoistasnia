@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>TASNIA | Happy 23rd Birthday — My Tasu 💖</title>
+  <meta name="description" content="A royal 24th birthday celebration for TASNIA (My Tasu) on October 31, 2002. Conceived by Minhaz from Alor Setar to Sylhet.">
+  <title>TASNIA | Happy 24th Birthday — My Tasu 💖</title>
   
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👑</text></svg>">
   
@@ -215,24 +216,39 @@
       will-change: transform, opacity;
     }
 
-    /* Radial Touch Burst Fireworks Particles */
+    /* Radial Touch Burst Fireworks Particles (Upgraded: Big, Slow, Elastic Glow) */
     @keyframes sparkFlyOut {
       0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) translate(0, 0) scale(0.2);
+      }
+      12% {
         opacity: 1;
-        transform: translate(0, 0) scale(0.4);
+        transform: translate(-50%, -50%) translate(calc(var(--tx) * 0.4), calc(var(--ty) * 0.4 - 20px)) scale(1.35);
+      }
+      25% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translate(calc(var(--tx) * 0.7), calc(var(--ty) * 0.7 - 50px)) scale(1.0);
+      }
+      75% {
+        opacity: 1;
+        transform: translate(-50%, -50%) translate(calc(var(--tx) + var(--drift)), calc(var(--ty) - var(--rise) * 0.75)) scale(1.0);
       }
       100% {
         opacity: 0;
-        transform: translate(var(--tx), var(--ty)) scale(1.3);
+        transform: translate(-50%, -50%) translate(calc(var(--tx) + var(--drift)), calc(var(--ty) - var(--rise))) scale(0.85);
       }
     }
     .touch-burst-particle {
       position: fixed;
       pointer-events: none;
-      z-index: 9998;
-      animation: sparkFlyOut 0.75s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
-      will-change: transform, opacity;
+      z-index: 99999;
       line-height: 1;
+      user-select: none;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      filter: drop-shadow(0 0 12px rgba(230, 202, 133, 0.85)) drop-shadow(0 0 20px rgba(232, 165, 152, 0.65));
+      animation: sparkFlyOut var(--duration, 3200ms) cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      will-change: transform, opacity;
     }
 
     /* Audio wave animation */
@@ -295,7 +311,7 @@
             <div class="w-32 h-32 rounded-full bg-gradient-to-tr from-[#1A332C] via-midnight-card to-gold/30 flex items-center justify-center p-1.5 border-2 border-gold/70 shadow-[0_0_55px_rgba(230,202,133,0.5)] wax-seal-glow group-hover:scale-105 active:scale-95 transition-all">
               <div class="w-full h-full rounded-full border border-gold/40 flex flex-col items-center justify-center bg-gradient-to-b from-midnight-surface/90 to-midnight-dark/95 backdrop-blur-md">
                 <span class="text-4xl filter drop-shadow-[0_0_14px_rgba(230,202,133,0.9)] animate-bounce" style="animation-duration: 2.2s;">👑</span>
-                <span class="text-[9px] font-serif tracking-[0.25em] text-gold-light uppercase font-extrabold mt-1">XXIII</span>
+                <span class="text-[9px] font-serif tracking-[0.25em] text-gold-light uppercase font-extrabold mt-1">XXIV</span>
               </div>
             </div>
             <!-- Animated decorative pulse ring -->
@@ -303,14 +319,14 @@
             
             <!-- Subtitle Ribbon Seal with exact Masterprompt date & birthplace -->
             <span class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-midnight-card text-gold-light text-[8.5px] font-bold px-3.5 py-1 rounded-full border border-gold/60 tracking-wider whitespace-nowrap shadow-lg">
-              6 Ramadan 1424 AH • 31 October 2003 • Sylhet
+              24 Sha'ban 1423 AH • 31 October 2002 • Sylhet
             </span>
           </div>
 
           <!-- Grand Titles -->
           <div class="space-y-2.5 pt-4">
             <div class="inline-flex items-center gap-1.5 px-3.5 py-0.5 rounded-full bg-rose/15 border border-rose/40 text-rose-light text-[11px] font-bold tracking-widest uppercase">
-              <span>🌹 Royal 23rd Birthday Gift</span>
+              <span>🌹 Royal 24th Birthday Gift</span>
             </div>
 
             <!-- Massive glowing rose-gold 3D title -->
@@ -333,7 +349,7 @@
 
           <!-- Romantic Contextual Opening Note -->
           <p class="text-[11.5px] text-parchment-muted leading-relaxed max-w-[320px] font-light">
-            Born on the blessed 1st Jumu'ah of Ramadan in misty Sylhet. Today, 2,276 km away in Kedah, your birthday kingdom is ready to unfurl with love.
+            Born on a blessed Thursday, 24 Sha'ban 1423 AH (<span class="font-arabic text-gold/90 font-medium">سِلْهِتْ • يَوْمُ الْخَمِيسِ • ٢٤ شَعْبَان ١٤٢٣</span>) in misty Sylhet—the day deeds are presented before Allah, just 6 days before Ramadan. Today, 2,276 km away in Kedah, your birthday kingdom is ready to unfurl with love.
           </p>
 
           <!-- Interactive clue -->
@@ -346,7 +362,7 @@
         <!-- Bottom Unlock Button -->
         <div class="w-full pb-3 space-y-2.5">
           <button id="unwrap-envelope-btn" onclick="unlockCelebrationEnvelope()" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-gold-dark via-gold to-gold-light text-midnight font-serif font-black text-sm tracking-wider uppercase shadow-[0_0_40px_rgba(230,202,133,0.55)] flex items-center justify-center gap-2 transform active:scale-95 transition-all duration-300 hover:brightness-110">
-            <span>Unwrap Your 23rd Birthday, My Tasu</span>
+            <span>Unwrap Your 24th Birthday, My Tasu</span>
             <span class="text-xl">🎁</span>
           </button>
           <p class="text-[9.5px] text-center text-parchment-muted/75 tracking-widest uppercase">
@@ -368,7 +384,7 @@
           <span class="text-lg">🌙</span>
           <div>
             <span class="text-[10.5px] font-bold text-gold tracking-widest uppercase block">TASNIA’S KINGDOM</span>
-            <span class="text-[8.5px] text-rose font-medium">31 October 2003 • 23 Golden Years</span>
+            <span class="text-[8.5px] text-rose font-medium">31 October 2002 • 24 Golden Years</span>
           </div>
         </div>
         
@@ -385,8 +401,13 @@
         <!-- Inner Arch with overflow hidden -->
         <div class="relative w-full h-full rounded-[28px] overflow-hidden bg-midnight-dark">
           
-          <!-- Image Tag: loads ./hero-hands.jpg with fallback -->
-          <img id="hero-photo-img" src="./hero-hands.jpg" onerror="this.onerror=null; this.src='Gemini_Generated_Image_73ov8z73ov8z73ov.jpg';" alt="Minhaz & Tasu Holding Hands" class="w-full h-full object-cover object-[center_35%] transition-transform duration-1000 group-hover:scale-105">
+          <!-- Image Tag: loads ./hero-hands.jpg with safe fallback -->
+          <img id="hero-photo-img" src="./hero-hands.jpg" onerror="this.onerror=null; this.src='./hero-hands.jpg';" alt="Minhaz & Tasu Holding Hands" class="w-full h-full object-cover object-[center_35%] transition-transform duration-1000 group-hover:scale-105">
+
+          <!-- Top-Center Glowing Badge (Covers any old text printed at top of photo seamlessly) -->
+          <div class="absolute top-3.5 left-1/2 -translate-x-1/2 z-30 px-3.5 py-1 rounded-full bg-gradient-to-r from-midnight-dark via-[#142822] to-midnight-dark border border-gold/75 shadow-[0_0_24px_rgba(230,202,133,0.7)] text-gold-light text-[11px] font-serif font-bold tracking-wide whitespace-nowrap flex items-center gap-1.5 pointer-events-none select-none backdrop-blur-md">
+            <span>✨ Happy 24th Birthday, My Tasu ✨</span>
+          </div>
 
           <!-- Dark gradient overlay for text readability -->
           <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark via-midnight-dark/35 to-transparent pointer-events-none"></div>
@@ -408,7 +429,7 @@
             
             <div class="space-y-1">
               <h2 class="text-2xl sm:text-3xl font-serif font-black text-3d-tasnia leading-tight">
-                Happy 23rd Birthday,<br>
+                Happy 24th Birthday,<br>
                 <span>TASNIA</span>
               </h2>
 
@@ -468,42 +489,42 @@
           </button>
         </div>
 
-        <!-- TAB 0: Tasu's Life Since 2003-10-31 -->
+        <!-- TAB 0: Tasu's Life Since 2002-10-31 -->
         <div id="tm-content-0" class="space-y-3">
           <div class="flex items-center justify-between pb-1 border-b border-midnight-border/60">
             <span class="text-[10px] uppercase font-serif font-bold text-gold-light">Tasu's Life Timeline</span>
             <span class="text-[9px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/30">
-              6 Ramadan 1424 AH
+              24 Sha'ban 1423 AH
             </span>
           </div>
 
           <!-- Main Live Counter Grid -->
           <div class="grid grid-cols-3 gap-2 text-center">
             <div class="p-2.5 rounded-2xl bg-midnight-surface/90 border border-gold/25 shadow-inner">
-              <span id="life-years" class="text-2xl font-serif font-bold text-gold-light">23</span>
+              <span id="life-years" class="text-2xl font-serif font-bold text-gold-light">24</span>
               <p class="text-[8px] uppercase tracking-wider text-parchment-muted font-bold mt-0.5">Years</p>
             </div>
             <div class="p-2.5 rounded-2xl bg-midnight-surface/90 border border-gold/25 shadow-inner">
-              <span id="life-months" class="text-2xl font-serif font-bold text-gold-light">276</span>
+              <span id="life-months" class="text-2xl font-serif font-bold text-gold-light">288</span>
               <p class="text-[8px] uppercase tracking-wider text-parchment-muted font-bold mt-0.5">Months</p>
             </div>
             <div class="p-2.5 rounded-2xl bg-midnight-surface/90 border border-rose/30 shadow-inner">
-              <span id="life-weeks" class="text-2xl font-serif font-bold text-rose-light">1,200</span>
+              <span id="life-weeks" class="text-2xl font-serif font-bold text-rose-light">1,252</span>
               <p class="text-[8px] uppercase tracking-wider text-rose font-bold mt-0.5">Weeks</p>
             </div>
           </div>
 
           <div class="grid grid-cols-4 gap-1.5 text-center">
             <div class="p-2 rounded-xl bg-midnight-surface/70 border border-midnight-border">
-              <span id="life-days" class="text-sm font-mono font-bold text-parchment">8,401</span>
+              <span id="life-days" class="text-sm font-mono font-bold text-parchment">8,766</span>
               <p class="text-[7.5px] uppercase text-parchment-muted">Days</p>
             </div>
             <div class="p-2 rounded-xl bg-midnight-surface/70 border border-midnight-border">
-              <span id="life-hours" class="text-sm font-mono font-bold text-parchment">201,624</span>
+              <span id="life-hours" class="text-sm font-mono font-bold text-parchment">210,384</span>
               <p class="text-[7.5px] uppercase text-parchment-muted">Hours</p>
             </div>
             <div class="p-2 rounded-xl bg-midnight-surface/70 border border-midnight-border">
-              <span id="life-minutes" class="text-sm font-mono font-bold text-parchment">--</span>
+              <span id="life-minutes" class="text-sm font-mono font-bold text-parchment">12,623,040</span>
               <p class="text-[7.5px] uppercase text-parchment-muted">Minutes</p>
             </div>
             <div class="p-2 rounded-xl bg-midnight-surface/70 border border-midnight-border">
@@ -677,7 +698,7 @@
     </section>
 
     <!-- ============================================================== -->
-    <!-- 4. STORY-STYLE VISUAL CAROUSEL (OCTOBER 31, 2003 SNAPSHOT)     -->
+    <!-- 4. STORY-STYLE VISUAL CAROUSEL (OCTOBER 31, 2002 SNAPSHOT)     -->
     <!-- ============================================================== -->
     <section class="p-4 space-y-3 z-10">
       
@@ -686,88 +707,89 @@
           <span>✨ Cosmic Alignment</span>
         </div>
         <h3 class="text-xl font-serif font-bold text-parchment">The World When She Arrived</h3>
-        <p class="text-[10px] text-parchment-muted">Swipe horizontally through October 31, 2003</p>
+        <p class="text-[10px] text-parchment-muted">Swipe horizontally through October 31, 2002</p>
       </div>
 
       <!-- Horizontal Snap Carousel -->
       <div id="story-carousel" class="flex gap-3.5 overflow-x-auto no-scrollbar py-2 px-1 snap-x snap-mandatory">
         
-        <!-- Story Card 1: Hemanta Mist -->
+        <!-- Story Card 1: Hemanta Mist (16 Kartik 1409 BS) -->
         <div class="w-[290px] flex-shrink-0 snap-center rounded-3xl bg-midnight-card border border-gold/35 overflow-hidden shadow-2xl relative flex flex-col justify-end aspect-[3/4]">
           <img src="https://images.unsplash.com/photo-1596895111956-bf1cf0599ce5?auto=format&fit=crop&w=900&q=80" alt="Sylhet Mist" class="absolute inset-0 w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark via-midnight-dark/60 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark via-midnight-dark/65 to-transparent"></div>
           
           <div class="relative z-10 p-4 space-y-1.5">
             <div class="inline-block px-2.5 py-0.5 rounded-full bg-gold/20 backdrop-blur-md border border-gold/40 text-[8.5px] font-bold text-gold-light uppercase">
-              16 Kartik 1410
+              16 Kartik 1409 BS
             </div>
-            <h4 class="text-base font-serif font-bold text-parchment leading-tight">Sylhet Hemanta Mist</h4>
+            <h4 class="text-base font-serif font-bold text-parchment leading-tight">Sylhet Hemanta Mist • ১৬ কার্তিক ১৪০৯</h4>
             <p class="text-[10.5px] text-parchment-muted leading-relaxed font-light">
-              Monsoon rains had just retreated from the Sylhet tea valleys, leaving a cool 22°C autumn mist the night you arrived.
+              Hemanta (Late Autumn) mist over the Sylhet tea gardens and Surma River valley (~21°C night, ~30°C day) the autumn night you arrived.
             </p>
           </div>
         </div>
 
-        <!-- Story Card 2: Surma River & Keane Bridge (with resilient fallback) -->
+        <!-- Story Card 2: Surma River & Keane Bridge -->
         <div class="w-[290px] flex-shrink-0 snap-center rounded-3xl bg-midnight-card border border-gold/35 overflow-hidden shadow-2xl relative flex flex-col justify-end aspect-[3/4]">
           <img src="https://images.unsplash.com/photo-1542385151-efd9000785a0?auto=format&fit=crop&w=900&q=80" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=900&q=80';" alt="Surma River Bridge" class="absolute inset-0 w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark via-midnight-dark/60 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark via-midnight-dark/65 to-transparent"></div>
           
           <div class="relative z-10 p-4 space-y-1.5">
             <div class="inline-block px-2.5 py-0.5 rounded-full bg-gold/20 backdrop-blur-md border border-gold/40 text-[8.5px] font-bold text-gold-light uppercase">
               Surma River
             </div>
-            <h4 class="text-base font-serif font-bold text-parchment leading-tight">The Heart of Sylhet, 2003</h4>
+            <h4 class="text-base font-serif font-bold text-parchment leading-tight">The Heart of Sylhet, 2002</h4>
             <p class="text-[10.5px] text-parchment-muted leading-relaxed font-light">
-              While the Surma River flowed past Keane Bridge and Ali Amjad's Clock, my favorite soul entered the world.
+              While the Surma River flowed quietly past Keane Bridge and Ali Amjad's Clock on that autumn Thursday in 2002, my favorite soul entered the world.
             </p>
           </div>
         </div>
 
-        <!-- Story Card 3: 1st Jumu'ah of Ramadan -->
+        <!-- Story Card 3: Thursday, 24 Sha'ban 1423 AH -->
         <div class="w-[290px] flex-shrink-0 snap-center rounded-3xl bg-midnight-card border border-gold/35 overflow-hidden shadow-2xl relative flex flex-col justify-end aspect-[3/4]">
-          <img src="https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=900&q=80" alt="Holy Ramadan" class="absolute inset-0 w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark via-midnight-dark/60 to-transparent"></div>
+          <img src="https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=900&q=80" alt="Holy Sha'ban" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark via-midnight-dark/65 to-transparent"></div>
           
           <div class="relative z-10 p-4 space-y-1.5">
             <div class="inline-block px-2.5 py-0.5 rounded-full bg-gold/20 backdrop-blur-md border border-gold/40 text-[8.5px] font-bold text-gold-light uppercase">
-              Holy Month of Mercy
+              Thursday • 24 Sha'ban 1423 AH
             </div>
-            <h4 class="text-base font-serif font-bold text-parchment leading-tight">1st Jumu'ah of Ramadan 1424 AH</h4>
+            <h4 class="text-base font-serif font-bold text-parchment leading-tight">Thursday, 24 Sha'ban 1423 AH</h4>
             <p class="text-[10.5px] text-parchment-muted leading-relaxed font-light">
-              Born on 6 Ramadan—the holiest day of the week inside the holiest month of mercy.
+              <span class="font-arabic text-gold/90 block mb-0.5">سِلْهِتْ • يَوْمُ الْخَمِيسِ • ٢٤ شَعْبَان ١٤٢٣</span>
+              Born on a blessed Thursday—the day deeds are presented before Allah—in the sacred month of Sha'ban, just 6 days before Ramadan 1423 AH began across Sylhet.
             </p>
           </div>
         </div>
 
-        <!-- Story Card 4: 42% Waxing Crescent Moon -->
+        <!-- Story Card 4: 27% Waning Crescent • The Tahajjud Moon -->
         <div class="w-[290px] flex-shrink-0 snap-center rounded-3xl bg-midnight-card border border-gold/35 overflow-hidden shadow-2xl relative flex flex-col justify-end aspect-[3/4]">
-          <img src="https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=900&q=80" alt="Crescent Moon" class="absolute inset-0 w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark via-midnight-dark/60 to-transparent"></div>
+          <img src="https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&w=900&q=80" alt="Tahajjud Moon" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark via-midnight-dark/65 to-transparent"></div>
           
           <div class="relative z-10 p-4 space-y-1.5">
             <div class="inline-block px-2.5 py-0.5 rounded-full bg-gold/20 backdrop-blur-md border border-gold/40 text-[8.5px] font-bold text-gold-light uppercase">
-              Celestial Sky
+              27% Waning Crescent • The Tahajjud Moon
             </div>
-            <h4 class="text-base font-serif font-bold text-parchment leading-tight">42% Waxing Crescent Moon</h4>
+            <h4 class="text-base font-serif font-bold text-parchment leading-tight">The Tahajjud Moon</h4>
             <p class="text-[10.5px] text-parchment-muted leading-relaxed font-light">
-              The exact young Ramadan crescent hanging over Sylhet after Maghrib on your birthday.
+              On October 31, 2002, a 27% crescent moon rose in the last third of the night over Sylhet—the exact pre-dawn hour of Tahajjud when Allah descends to answer prayers.
             </p>
           </div>
         </div>
 
-        <!-- Story Card 5: Masjid Zahir Alor Setar ↔ Sylhet (with resilient fallback) -->
+        <!-- Story Card 5: October 31, 2002 • Two Timelines, One Destiny -->
         <div class="w-[290px] flex-shrink-0 snap-center rounded-3xl bg-midnight-card border border-gold/35 overflow-hidden shadow-2xl relative flex flex-col justify-end aspect-[3/4]">
           <img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=900&q=80" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=900&q=80';" alt="Masjid Zahir" class="absolute inset-0 w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark via-midnight-dark/60 to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark via-midnight-dark/65 to-transparent"></div>
           
           <div class="relative z-10 p-4 space-y-1.5">
             <div class="inline-block px-2.5 py-0.5 rounded-full bg-gold/20 backdrop-blur-md border border-gold/40 text-[8.5px] font-bold text-gold-light uppercase">
-              Kedah ↔ Sylhet
+              Two Timelines, One Destiny
             </div>
-            <h4 class="text-base font-serif font-bold text-parchment leading-tight">Alor Setar ↔ Sylhet</h4>
+            <h4 class="text-base font-serif font-bold text-parchment leading-tight">October 31, 2002 • Written by Allah</h4>
             <p class="text-[10.5px] text-parchment-muted leading-relaxed font-light">
-              On your birth day, Malaysia changed its PM after 22 years. Today, in Kedah, I am working to build our home.
+              While Soyuz TMA-1 orbited in space and Sylhet's Surma River flowed quietly on that autumn Thursday in 2002, Allah had already written that a boy now working 2,276 km away in Alor Setar, Kedah would guard your heart.
             </p>
           </div>
         </div>
@@ -835,7 +857,7 @@
             <span class="text-xl">🎙️</span>
             <div>
               <h4 class="text-xs font-serif font-bold text-parchment">Minhaz's Voice Note</h4>
-              <p class="text-[9px] text-rose">Birthday Message & 23rd Year Resolution</p>
+              <p class="text-[9px] text-rose">Birthday Message & 24th Year Resolution</p>
             </div>
           </div>
           <span class="text-[8.5px] font-mono bg-gold/15 text-gold-light px-2.5 py-1 rounded-full border border-gold/30">UNLOCKED 💖</span>
@@ -1156,10 +1178,10 @@
         <!-- 6 Floating Lanterns Grid -->
         <div class="grid grid-cols-3 gap-2.5 py-2">
           
-          <!-- Lantern 1: Health & 23rd Year -->
+          <!-- Lantern 1: Health & 24th Year -->
           <button id="lantern-btn-0" onclick="popSkyLantern(0)" class="p-3 rounded-2xl bg-gradient-to-b from-midnight-surface to-midnight-dark border border-gold/30 flex flex-col items-center justify-center space-y-1 transform active:scale-90 transition-all hover:border-gold">
             <span id="lantern-icon-0" class="text-3xl filter drop-shadow-[0_0_8px_rgba(230,202,133,0.8)] animate-float-gentle">🏮</span>
-            <span class="text-[9px] font-serif font-bold text-gold-light text-center leading-tight">Health & 23rd Year</span>
+            <span class="text-[9px] font-serif font-bold text-gold-light text-center leading-tight">Health & 24th Year</span>
           </button>
 
           <!-- Lantern 2: Her Art & Creativity -->
@@ -1248,7 +1270,7 @@
             <span class="text-3xl animate-bounce inline-block">💌</span>
 
             <h4 class="text-base font-serif font-bold text-3d-tasnia">
-              Happy 23rd Birthday, My Tasu.
+              Happy 24th Birthday, My Tasu.
             </h4>
 
             <p class="text-xs font-serif italic text-parchment leading-relaxed drop-shadow">
@@ -1270,7 +1292,7 @@
     <!-- Footer -->
     <footer class="mt-4 mb-2 text-center text-[10px] text-parchment-muted/65 font-light space-y-1">
       <p class="font-serif italic text-gold/70">“And what Allah folds together, no distance of map can delay.”</p>
-      <p>Tasnia (My Tasu) • Born 31 October 2003 • Built with love by Minhaz</p>
+      <p>© 2002–2026 • Tasnia (My Tasu) • Born 31 October 2002 • Built with love by Minhaz</p>
     </footer>
 
   </div>
@@ -1300,7 +1322,7 @@
     /* -----------------------------------------------------------
        A. DATES & CACHED FORMATTERS (Optimized for 60/120fps)
     ----------------------------------------------------------- */
-    const TASU_BIRTH_DATE = new Date('2003-10-31T00:00:00+06:00'); // Sylhet BST
+    const TASU_BIRTH_DATE = new Date('2002-10-31T00:00:00+06:00'); // Sylhet BST (October 31, 2002)
     const WE_MET_DATE = new Date('2021-02-01T00:00:00+06:00');
     const CRUCIBLE_EID_DATE = new Date('2023-04-22T00:00:00+06:00');
 
@@ -1618,33 +1640,41 @@
     })();
 
     /* -----------------------------------------------------------
-       C. FINGER-TOUCH FIREWORKS ON SCREEN (Radial 360° Outward Spray)
+       C. FINGER-TOUCH FIREWORKS ON SCREEN (Upgraded: Big, Slow, Elastic)
     ----------------------------------------------------------- */
     document.addEventListener('pointerdown', (e) => {
-      if (e.target.closest('button') || e.target.closest('input') || e.target.closest('#scratch-canvas')) {
+      if (e.target.closest('button') || e.target.closest('input') || e.target.closest('label') || e.target.closest('#scratch-canvas') || e.target.closest('#distance-range')) {
         return;
       }
       spawnTouchMicroSparks(e.clientX, e.clientY);
     });
 
     function spawnTouchMicroSparks(x, y) {
-      const sparks = ['💖', '✨', '🌹', '⭐', '🎂', '🦋'];
-      const count = 7;
+      const sparks = ['💖', '❤️', '🌹', '✨', '🦋', '🎉', '👑', '🌸'];
+      const count = Math.floor(Math.random() * 3) + 10; // 10 to 12 emojis per tap
       for (let i = 0; i < count; i++) {
         const item = document.createElement('div');
         item.className = 'touch-burst-particle';
-        item.textContent = sparks[i % sparks.length];
+        item.textContent = sparks[Math.floor(Math.random() * sparks.length)];
         item.style.left = `${x}px`;
         item.style.top = `${y}px`;
-        item.style.fontSize = `${Math.random() * 8 + 14}px`;
 
-        const angle = (Math.PI * 2 / count) * i + (Math.random() * 0.4 - 0.2);
-        const dist = Math.random() * 45 + 30;
-        item.style.setProperty('--tx', `${Math.cos(angle) * dist}px`);
-        item.style.setProperty('--ty', `${Math.sin(angle) * dist}px`);
+        const angle = (Math.PI * 2 / count) * i + (Math.random() * 0.5 - 0.25);
+        const radius = Math.random() * 75 + 35;
+        const tx = Math.cos(angle) * radius;
+        const ty = Math.sin(angle) * radius;
+        const rise = Math.random() * 80 + 140; // upward float 140px - 220px
+        const drift = (Math.random() - 0.5) * 80; // random horizontal drift
+        const duration = Math.floor(Math.random() * 800) + 2800; // 2800ms - 3600ms
+
+        item.style.setProperty('--tx', `${tx}px`);
+        item.style.setProperty('--ty', `${ty}px`);
+        item.style.setProperty('--rise', `${rise}px`);
+        item.style.setProperty('--drift', `${drift}px`);
+        item.style.setProperty('--duration', `${duration}ms`);
 
         document.body.appendChild(item);
-        setTimeout(() => item.remove(), 750);
+        setTimeout(() => item.remove(), duration + 100);
       }
     }
 
@@ -2159,9 +2189,9 @@
     ----------------------------------------------------------- */
     const LANTERNS_DB = [
       {
-        title: "Lantern 1: Health & 23rd Year",
-        en: "May Allah fill your 23rd year with radiant health and Sakinah.",
-        bn: "আল্লাহ তোমার ২৩তম বছরটি সুস্বাস্থ্য ও প্রশান্তিতে ভরে দিন।"
+        title: "Lantern 1: Health & 24th Year",
+        en: "May Allah fill your 24th year with radiant health and Sakinah.",
+        bn: "আল্লাহ তোমার ২৪তম বছরটি সুস্বাস্থ্য ও প্রশান্তিতে ভরে দিন।"
       },
       {
         title: "Lantern 2: Her Art & Creativity",
