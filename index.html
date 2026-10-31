@@ -90,11 +90,12 @@
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 
   <style>
-    /* Mobile-first and custom styles */
+    /* Mobile-first base styles */
     * {
       -webkit-tap-highlight-color: transparent;
       user-select: none;
       -webkit-user-select: none;
+      box-sizing: border-box;
     }
     input, textarea {
       user-select: auto;
@@ -103,6 +104,9 @@
     body {
       background-color: #050B09;
       color: #EDE5D6;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
     }
     
     /* Islamic subtle geometric background */
@@ -117,12 +121,12 @@
 
     /* 3D Rose-Gold Text with Champagne Shimmer */
     .text-3d-tasnia {
-      background: linear-gradient(135deg, #FFF6E5 0%, #E6CA85 30%, #E8A598 65%, #C5A059 100%);
+      background: linear-gradient(135deg, #FFF6E5 0%, #E6CA85 30%, #E8A598 65%, #DFBA6B 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      text-shadow: 0 3px 18px rgba(230, 202, 133, 0.45), 0 1px 2px rgba(0,0,0,0.8);
-      filter: drop-shadow(0 4px 12px rgba(232, 165, 152, 0.3));
+      text-shadow: 0 3px 20px rgba(230, 202, 133, 0.45);
+      filter: drop-shadow(0 4px 14px rgba(232, 165, 152, 0.35));
     }
 
     .text-gold-gradient {
@@ -138,7 +142,7 @@
     }
     .transform-style-3d {
       transform-style: preserve-3d;
-      transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
     }
     .backface-hidden {
       backface-visibility: hidden;
@@ -152,90 +156,112 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Custom range slider thumb */
+    /* Custom Distance Slider */
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
-      height: 28px;
-      width: 28px;
+      height: 32px;
+      width: 32px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #F7EBC6, #E6CA85, #C5A059);
-      border: 2px solid #FAF7F2;
-      box-shadow: 0 0 14px rgba(230, 202, 133, 0.8), 0 2px 6px rgba(0,0,0,0.6);
+      background: linear-gradient(135deg, #FFF6E5 0%, #E6CA85 50%, #C5A059 100%);
+      border: 2.5px solid #FAF7F2;
+      box-shadow: 0 0 16px rgba(230, 202, 133, 0.9), 0 2px 8px rgba(0,0,0,0.7);
       cursor: pointer;
-      margin-top: -10px;
-      transition: transform 0.15s ease;
+      margin-top: -12px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
     input[type=range]::-webkit-slider-thumb:active {
-      transform: scale(1.2);
+      transform: scale(1.22);
+      box-shadow: 0 0 24px rgba(232, 165, 152, 1);
     }
     input[type=range]::-moz-range-thumb {
-      height: 28px;
-      width: 28px;
+      height: 32px;
+      width: 32px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #F7EBC6, #E6CA85, #C5A059);
-      border: 2px solid #FAF7F2;
-      box-shadow: 0 0 14px rgba(230, 202, 133, 0.8);
+      background: linear-gradient(135deg, #FFF6E5 0%, #E6CA85 50%, #C5A059 100%);
+      border: 2.5px solid #FAF7F2;
+      box-shadow: 0 0 16px rgba(230, 202, 133, 0.9);
       cursor: pointer;
     }
     input[type=range]::-webkit-slider-runnable-track {
       width: 100%;
       height: 8px;
       cursor: pointer;
-      background: #11221C;
+      background: linear-gradient(90deg, #11221C 0%, #244538 50%, #11221C 100%);
       border-radius: 9999px;
-      border: 1px solid rgba(230, 202, 133, 0.3);
+      border: 1px solid rgba(230, 202, 133, 0.35);
     }
 
-    /* Floating micro sparkles / reaction fountain */
+    /* Floating Reaction Fountains */
     @keyframes floatUpAndFade {
       0% {
         opacity: 1;
         transform: translate3d(0, 0, 0) scale(0.6) rotate(0deg);
       }
       50% {
-        opacity: 0.9;
-        transform: translate3d(var(--x-shift), -70px, 0) scale(1.2) rotate(15deg);
+        opacity: 0.95;
+        transform: translate3d(var(--x-shift), -75px, 0) scale(1.2) rotate(15deg);
       }
       100% {
         opacity: 0;
-        transform: translate3d(calc(var(--x-shift) * 1.5), -140px, 0) scale(1.4) rotate(-15deg);
+        transform: translate3d(calc(var(--x-shift) * 1.6), -150px, 0) scale(1.4) rotate(-15deg);
       }
     }
     .reaction-emoji-float {
       position: fixed;
       pointer-events: none;
       z-index: 9999;
-      animation: floatUpAndFade 1.6s ease-out forwards;
-      font-size: 26px;
+      animation: floatUpAndFade 1.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+      font-size: 28px;
       will-change: transform, opacity;
     }
 
-    /* Tap ripple effect */
-    @keyframes touchRipple {
+    /* Radial Touch Burst Fireworks Particles */
+    @keyframes sparkFlyOut {
       0% {
         opacity: 1;
-        transform: scale(0.3);
+        transform: translate(0, 0) scale(0.4);
       }
       100% {
         opacity: 0;
-        transform: scale(2.2);
+        transform: translate(var(--tx), var(--ty)) scale(1.3);
       }
     }
     .touch-burst-particle {
       position: fixed;
       pointer-events: none;
       z-index: 9998;
-      border-radius: 50%;
-      animation: touchRipple 0.7s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+      animation: sparkFlyOut 0.75s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+      will-change: transform, opacity;
+      line-height: 1;
     }
 
     /* Audio wave animation */
     .bar-anim {
-      animation: barJump 1.2s ease-in-out infinite alternate;
+      animation: barJump 1.1s ease-in-out infinite alternate;
     }
     @keyframes barJump {
       0% { height: 6px; }
-      100% { height: 32px; }
+      100% { height: 34px; }
+    }
+
+    /* Safe Area insets */
+    .safe-top {
+      padding-top: max(1rem, env(safe-area-inset-top));
+    }
+    .safe-bottom {
+      padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+    }
+    .safe-bottom-fixed {
+      bottom: max(1rem, env(safe-area-inset-bottom));
+    }
+
+    /* Wax seal pulse */
+    @keyframes waxGlow {
+      0%, 100% { box-shadow: 0 0 25px rgba(230, 202, 133, 0.5), inset 0 0 15px rgba(230, 202, 133, 0.3); }
+      50% { box-shadow: 0 0 45px rgba(232, 165, 152, 0.8), inset 0 0 25px rgba(232, 165, 152, 0.5); }
+    }
+    .wax-seal-glow {
+      animation: waxGlow 2.5s ease-in-out infinite;
     }
   </style>
 </head>
@@ -250,78 +276,84 @@
     <!-- ============================================================== -->
     <!-- 1. SPLASH GATEKEEPER & ROYAL GIFT SEAL                         -->
     <!-- ============================================================== -->
-    <section id="splash-gatekeeper" class="fixed inset-0 z-50 flex flex-col justify-between p-6 bg-midnight-dark transition-all duration-1000 ease-in-out max-w-[430px] mx-auto border-x border-midnight-border/70 overflow-y-auto">
+    <section id="splash-gatekeeper" class="fixed inset-0 z-50 flex flex-col justify-between p-6 bg-gradient-to-b from-[#050B09] via-midnight to-[#050B09] transition-all duration-1000 ease-in-out w-full border-x border-midnight-border/70 overflow-y-auto safe-top safe-bottom">
       
-      <!-- Top Bar: Arabic Bismillah & Crescent -->
-      <div class="w-full flex justify-between items-center pt-2 opacity-85">
-        <span class="text-[10px] tracking-[0.25em] text-gold font-bold uppercase font-sans">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</span>
-        <span class="text-sm text-gold animate-pulse">🌙✨</span>
-      </div>
-
-      <!-- Center Seal & Celebration Invitation -->
-      <div class="flex flex-col items-center text-center my-auto px-2 space-y-6">
+      <!-- Inner Centered Container for 430px max width -->
+      <div class="w-full max-w-[400px] mx-auto flex flex-col justify-between h-full min-h-[620px]">
         
-        <!-- Glowing Royal Gift Seal Badge -->
-        <div class="relative animate-float-gentle">
-          <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-midnight-card via-[#1A332C] to-gold/30 flex items-center justify-center p-1.5 border-2 border-gold/60 shadow-[0_0_50px_rgba(230,202,133,0.45)]">
-            <div class="w-full h-full rounded-full border border-gold/30 flex flex-col items-center justify-center bg-midnight-dark/80 backdrop-blur-sm">
-              <span class="text-4xl filter drop-shadow-[0_0_12px_rgba(230,202,133,0.8)]">👑</span>
-              <span class="text-[9px] font-serif tracking-[0.2em] text-gold-light uppercase font-bold mt-1">XXIII</span>
-            </div>
-          </div>
-          <!-- Pulse ring -->
-          <div class="absolute -inset-2 rounded-full border border-rose/40 animate-ping pointer-events-none opacity-40"></div>
-          
-          <!-- Subtitle Ribbon Seal -->
-          <span class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-midnight-card text-gold-light text-[8.5px] font-bold px-3.5 py-1 rounded-full border border-gold/50 tracking-wider whitespace-nowrap shadow-lg">
-            6 RAMADAN 1424 AH • SYLHET
-          </span>
+        <!-- Top Bar: Arabic Bismillah & Crescent -->
+        <div class="w-full flex justify-between items-center opacity-90 pt-1">
+          <span class="text-[10px] tracking-[0.25em] text-gold font-bold uppercase font-sans">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</span>
+          <span class="text-base text-gold animate-pulse">🌙✨</span>
         </div>
 
-        <!-- Grand Titles -->
-        <div class="space-y-3 pt-3">
-          <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-rose/15 border border-rose/40 text-rose-light text-[11px] font-bold tracking-widest uppercase">
-            <span>🌹 Happy 23rd Birthday</span>
+        <!-- Center Seal & Celebration Invitation -->
+        <div class="flex flex-col items-center text-center my-auto px-1 space-y-5">
+          
+          <!-- Glowing Royal Gift Seal Badge (Tap to unwrap directly) -->
+          <div class="relative cursor-pointer group" onclick="unlockCelebrationEnvelope()" title="Tap to unwrap">
+            <div class="w-32 h-32 rounded-full bg-gradient-to-tr from-[#1A332C] via-midnight-card to-gold/30 flex items-center justify-center p-1.5 border-2 border-gold/70 shadow-[0_0_55px_rgba(230,202,133,0.5)] wax-seal-glow group-hover:scale-105 active:scale-95 transition-all">
+              <div class="w-full h-full rounded-full border border-gold/40 flex flex-col items-center justify-center bg-gradient-to-b from-midnight-surface/90 to-midnight-dark/95 backdrop-blur-md">
+                <span class="text-4xl filter drop-shadow-[0_0_14px_rgba(230,202,133,0.9)] animate-bounce" style="animation-duration: 2.2s;">👑</span>
+                <span class="text-[9px] font-serif tracking-[0.25em] text-gold-light uppercase font-extrabold mt-1">XXIII</span>
+              </div>
+            </div>
+            <!-- Animated decorative pulse ring -->
+            <div class="absolute -inset-2.5 rounded-full border border-rose/40 animate-ping pointer-events-none opacity-40"></div>
+            
+            <!-- Subtitle Ribbon Seal with exact Masterprompt date & birthplace -->
+            <span class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-midnight-card text-gold-light text-[8.5px] font-bold px-3.5 py-1 rounded-full border border-gold/60 tracking-wider whitespace-nowrap shadow-lg">
+              6 Ramadan 1424 AH • 31 October 2003 • Sylhet
+            </span>
           </div>
 
-          <h1 class="text-4xl sm:text-5xl font-serif font-black tracking-tight leading-none text-3d-tasnia">
-            TASNIA
-          </h1>
+          <!-- Grand Titles -->
+          <div class="space-y-2.5 pt-4">
+            <div class="inline-flex items-center gap-1.5 px-3.5 py-0.5 rounded-full bg-rose/15 border border-rose/40 text-rose-light text-[11px] font-bold tracking-widest uppercase">
+              <span>🌹 Royal 23rd Birthday Gift</span>
+            </div>
 
-          <!-- Pulsing Heart Badge -->
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-rose-dark/40 via-midnight-surface to-gold/20 border border-gold/40 shadow-md">
-            <span class="text-sm animate-pulse-heart">💖</span>
-            <span class="text-xs font-serif font-bold text-gold tracking-wide">“My Tasu”</span>
-            <span class="text-sm animate-pulse-heart">💖</span>
+            <!-- Massive glowing rose-gold 3D title -->
+            <h1 class="text-5xl font-serif font-black tracking-tight leading-none text-3d-tasnia drop-shadow-lg">
+              TASNIA
+            </h1>
+
+            <!-- Pulsing Heart Badge: "My Tasu" -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-rose-dark/40 via-midnight-surface to-gold/20 border border-gold/40 shadow-md">
+              <span class="text-sm animate-pulse-heart">💖</span>
+              <span class="text-xs font-serif font-bold text-gold tracking-wide">“My Tasu”</span>
+              <span class="text-sm animate-pulse-heart">💖</span>
+            </div>
+
+            <!-- Full Name displayed strictly ONCE on the splash screen -->
+            <p class="text-[11px] font-serif italic text-parchment-muted tracking-widest uppercase block pt-1 font-light">
+              Tasnia Yeasmin Suraiya
+            </p>
           </div>
 
-          <!-- Small Subtitle: Full Name Displayed ONCE -->
-          <p class="text-[11px] font-serif italic text-parchment-muted tracking-widest uppercase block pt-1">
-            Tasnia Yeasmin Suraiya
+          <!-- Romantic Contextual Opening Note -->
+          <p class="text-[11.5px] text-parchment-muted leading-relaxed max-w-[320px] font-light">
+            Born on the blessed 1st Jumu'ah of Ramadan in misty Sylhet. Today, 2,276 km away in Kedah, your birthday kingdom is ready to unfurl with love.
+          </p>
+
+          <!-- Interactive clue -->
+          <div class="flex items-center gap-2 text-[10px] text-gold/80 font-mono tracking-wider">
+            <span class="inline-block w-2 h-2 rounded-full bg-gold animate-ping"></span>
+            <span>TAP SEAL OR BUTTON TO UNWRAP 🎁</span>
+          </div>
+        </div>
+
+        <!-- Bottom Unlock Button -->
+        <div class="w-full pb-3 space-y-2.5">
+          <button id="unwrap-envelope-btn" onclick="unlockCelebrationEnvelope()" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-gold-dark via-gold to-gold-light text-midnight font-serif font-black text-sm tracking-wider uppercase shadow-[0_0_40px_rgba(230,202,133,0.55)] flex items-center justify-center gap-2 transform active:scale-95 transition-all duration-300 hover:brightness-110">
+            <span>Unwrap Your 23rd Birthday, My Tasu</span>
+            <span class="text-xl">🎁</span>
+          </button>
+          <p class="text-[9.5px] text-center text-parchment-muted/75 tracking-widest uppercase">
+            Fires dual cannons & reveals your birthday celebration
           </p>
         </div>
 
-        <!-- Sweet poetic teaser -->
-        <p class="text-xs text-parchment-muted leading-relaxed max-w-[310px] font-light">
-          Born on the holiest Friday of Ramadan in misty Sylhet. Today, 2,276 km away in Kedah, your birthday gift has been prepared with every beat of my heart.
-        </p>
-
-        <!-- Tap reminder -->
-        <div class="flex items-center gap-2 text-[10px] text-gold/80 font-mono tracking-wider">
-          <span class="inline-block w-2 h-2 rounded-full bg-gold animate-ping"></span>
-          <span>A SPECIAL SURPRISE AWAITS INSIDE</span>
-        </div>
-      </div>
-
-      <!-- Bottom Unlock Button -->
-      <div class="w-full pb-6 space-y-3">
-        <button id="unwrap-envelope-btn" onclick="unlockCelebrationEnvelope()" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-gold-dark via-gold to-gold-light text-midnight font-serif font-extrabold text-sm sm:text-base tracking-wider uppercase shadow-[0_0_40px_rgba(230,202,133,0.5)] flex items-center justify-center gap-2 transform active:scale-95 transition-all duration-300">
-          <span>Unwrap Your 23rd Birthday, My Tasu</span>
-          <span class="text-lg">🎁</span>
-        </button>
-        <p class="text-[9.5px] text-center text-parchment-muted/70 tracking-widest uppercase">
-          Tap to ignite dual fireworks & unveil your kingdom
-        </p>
       </div>
     </section>
 
@@ -330,43 +362,43 @@
     <!-- ============================================================== -->
     <header class="relative w-full pt-4 px-4 pb-3 flex flex-col items-center z-10">
       
-      <!-- Top Mini Nav / Sound Indicator -->
+      <!-- Top Mini Nav / Sound Status -->
       <div class="w-full flex items-center justify-between py-2 px-1 mb-2">
         <div class="flex items-center gap-2">
-          <span class="text-base">🌙</span>
+          <span class="text-lg">🌙</span>
           <div>
-            <span class="text-[10px] font-bold text-gold tracking-widest uppercase block">TASNIA’S DAY</span>
-            <span class="text-[8px] text-rose font-medium">31 October 2003 • 23 Years</span>
+            <span class="text-[10.5px] font-bold text-gold tracking-widest uppercase block">TASNIA’S KINGDOM</span>
+            <span class="text-[8.5px] text-rose font-medium">31 October 2003 • 23 Golden Years</span>
           </div>
         </div>
         
-        <!-- Header Audio Button -->
-        <button id="hero-quick-audio" onclick="toggleAudioPlayback()" class="px-3 py-1.5 rounded-full bg-midnight-card border border-gold/40 flex items-center gap-1.5 text-[10px] text-gold font-mono shadow-md active:scale-95 transition-transform">
+        <!-- Header Audio Button (links to voice note) -->
+        <button id="hero-quick-audio" onclick="handleHeroAudioClick()" class="px-3 py-1.5 rounded-full bg-midnight-card border border-gold/40 flex items-center gap-1.5 text-[10px] text-gold font-mono shadow-md active:scale-95 transition-transform hover:border-gold">
           <span id="hero-audio-glyph">▶</span>
-          <span id="hero-audio-label">Play Voice Note</span>
+          <span id="hero-audio-label">Voice Note</span>
         </button>
       </div>
 
       <!-- Glassmorphic Arch Frame for Hands Photo -->
-      <div class="relative w-full aspect-[4/5] max-h-[460px] rounded-[36px] p-2 bg-gradient-to-b from-gold/30 via-midnight-surface to-rose/30 shadow-[0_0_50px_rgba(230,202,133,0.25)] border-2 border-gold/40 overflow-hidden group">
+      <div class="relative w-full aspect-[4/5] max-h-[470px] rounded-[36px] p-2 bg-gradient-to-b from-gold/35 via-midnight-surface to-rose/30 shadow-[0_0_55px_rgba(230,202,133,0.25)] border-2 border-gold/45 overflow-hidden group">
         
         <!-- Inner Arch with overflow hidden -->
         <div class="relative w-full h-full rounded-[28px] overflow-hidden bg-midnight-dark">
           
-          <!-- Image Tag -->
-          <img id="hero-photo-img" src="./hero-hands.jpg" onerror="this.onerror=null; this.src='Gemini_Generated_Image_73ov8z73ov8z73ov.jpg';" alt="Minhaz & Tasu Holding Hands" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+          <!-- Image Tag: loads ./hero-hands.jpg with fallback -->
+          <img id="hero-photo-img" src="./hero-hands.jpg" onerror="this.onerror=null; this.src='Gemini_Generated_Image_73ov8z73ov8z73ov.jpg';" alt="Minhaz & Tasu Holding Hands" class="w-full h-full object-cover object-[center_35%] transition-transform duration-1000 group-hover:scale-105">
 
           <!-- Dark gradient overlay for text readability -->
-          <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark via-midnight-dark/30 to-transparent pointer-events-none"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark via-midnight-dark/35 to-transparent pointer-events-none"></div>
 
           <!-- Decorative Arch Frame Border -->
-          <div class="absolute inset-2.5 rounded-[22px] border border-gold/35 pointer-events-none"></div>
+          <div class="absolute inset-2.5 rounded-[22px] border border-gold/40 pointer-events-none"></div>
 
           <!-- "Change Photo" Button (Saves to localStorage) -->
-          <div class="absolute top-3 left-3 z-30">
-            <label class="px-2.5 py-1 rounded-full bg-midnight-dark/80 backdrop-blur-md border border-gold/40 text-[9px] text-gold flex items-center gap-1 cursor-pointer active:scale-95 transition-all shadow-md hover:bg-midnight-surface">
+          <div class="absolute top-3.5 left-3.5 z-30">
+            <label class="px-2.5 py-1 rounded-full bg-midnight-dark/85 backdrop-blur-md border border-gold/40 text-[9px] text-gold flex items-center gap-1.5 cursor-pointer active:scale-95 transition-all shadow-md hover:bg-midnight-surface">
               <span>📷</span>
-              <span>Change Photo</span>
+              <span id="change-photo-label">Change Photo</span>
               <input type="file" id="hero-photo-input" accept="image/*" class="hidden" onchange="handleHeroPhotoUpload(event)">
             </label>
           </div>
@@ -380,15 +412,15 @@
                 <span>TASNIA</span>
               </h2>
 
-              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-midnight-dark/80 backdrop-blur-md border border-rose/50 shadow-lg">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-midnight-dark/85 backdrop-blur-md border border-rose/50 shadow-lg">
                 <span class="text-xs animate-pulse-heart">💖</span>
                 <span class="text-[11px] font-serif font-bold text-rose-light tracking-wide">My Tasu</span>
                 <span class="text-xs animate-pulse-heart">💖</span>
               </div>
             </div>
 
-            <!-- Romantic Hand Caption -->
-            <p class="text-[11px] font-serif italic text-gold-light/95 max-w-[280px] mx-auto leading-relaxed drop-shadow-md">
+            <!-- Romantic Hand Caption from Masterprompt -->
+            <p class="text-[11px] font-serif italic text-gold-light max-w-[290px] mx-auto leading-relaxed drop-shadow-md">
               “Holding Your Hand Since 2021 — Forever (Insha'Allah)”
             </p>
           </div>
@@ -414,13 +446,13 @@
           <span>Cosmic Chronometer</span>
         </div>
         <h3 class="text-xl font-serif font-bold text-parchment">4-Mode Live Time Machine</h3>
-        <p class="text-[10px] text-parchment-muted">Real-time precision counters running down to 3-digit milliseconds</p>
+        <p class="text-[10px] text-parchment-muted">Real-time precision counters running down to 3-digit spinning milliseconds</p>
       </div>
 
       <!-- Time Machine Card -->
       <div class="rounded-3xl bg-midnight-card border-2 border-gold/35 p-4 shadow-xl space-y-4">
         
-        <!-- Tab Navigation Buttons (Horizontal Grid / Flex) -->
+        <!-- Tab Navigation Buttons -->
         <div class="grid grid-cols-4 gap-1 p-1 bg-midnight-dark rounded-2xl border border-midnight-border">
           <button id="tm-tab-0" onclick="switchTimeTab(0)" class="py-2 px-1 rounded-xl text-[9.5px] font-bold text-center transition-all bg-gradient-to-r from-gold-dark via-gold to-gold-light text-midnight shadow">
             🎂 Life
@@ -505,18 +537,23 @@
             “The moment our worlds intersected online—a conversation that turned into our lifelong home.”
           </p>
 
-          <div class="grid grid-cols-3 gap-2 text-center">
+          <!-- 4-element Grid including Years, Months, Days, Seconds -->
+          <div class="grid grid-cols-4 gap-1.5 text-center">
             <div class="p-2.5 rounded-2xl bg-midnight-surface/90 border border-rose/25">
-              <span id="met-years" class="text-2xl font-serif font-bold text-rose-light">5</span>
-              <p class="text-[8px] uppercase tracking-wider text-rose font-bold mt-0.5">Years</p>
+              <span id="met-years" class="text-xl font-serif font-bold text-rose-light">5</span>
+              <p class="text-[7.5px] uppercase tracking-wider text-rose font-bold mt-0.5">Years</p>
             </div>
             <div class="p-2.5 rounded-2xl bg-midnight-surface/90 border border-rose/25">
-              <span id="met-months" class="text-2xl font-serif font-bold text-rose-light">--</span>
-              <p class="text-[8px] uppercase tracking-wider text-rose font-bold mt-0.5">Months</p>
+              <span id="met-months" class="text-xl font-serif font-bold text-rose-light">--</span>
+              <p class="text-[7.5px] uppercase tracking-wider text-rose font-bold mt-0.5">Months</p>
             </div>
             <div class="p-2.5 rounded-2xl bg-midnight-surface/90 border border-gold/25">
-              <span id="met-days" class="text-2xl font-serif font-bold text-gold-light">--</span>
-              <p class="text-[8px] uppercase tracking-wider text-gold font-bold mt-0.5">Days</p>
+              <span id="met-days" class="text-xl font-serif font-bold text-gold-light">--</span>
+              <p class="text-[7.5px] uppercase tracking-wider text-gold font-bold mt-0.5">Days</p>
+            </div>
+            <div class="p-2.5 rounded-2xl bg-midnight-surface/90 border border-gold/25">
+              <span id="met-seconds" class="text-xl font-serif font-bold text-gold">--</span>
+              <p class="text-[7.5px] uppercase tracking-wider text-gold font-bold mt-0.5">Secs</p>
             </div>
           </div>
 
@@ -548,22 +585,27 @@
             </p>
           </div>
 
-          <div class="grid grid-cols-4 gap-1.5 text-center">
+          <!-- Days, Hours, Minutes, Secs, ms Grid -->
+          <div class="grid grid-cols-5 gap-1 text-center">
             <div class="p-2 rounded-xl bg-midnight-surface/70 border border-midnight-border">
               <span id="crucible-days" class="text-sm font-mono font-bold text-gold">--</span>
-              <p class="text-[7.5px] uppercase text-parchment-muted">Days</p>
+              <p class="text-[7px] uppercase text-parchment-muted">Days</p>
             </div>
             <div class="p-2 rounded-xl bg-midnight-surface/70 border border-midnight-border">
               <span id="crucible-hours" class="text-sm font-mono font-bold text-parchment">--</span>
-              <p class="text-[7.5px] uppercase text-parchment-muted">Hours</p>
+              <p class="text-[7px] uppercase text-parchment-muted">Hours</p>
+            </div>
+            <div class="p-2 rounded-xl bg-midnight-surface/70 border border-midnight-border">
+              <span id="crucible-minutes" class="text-sm font-mono font-bold text-parchment">--</span>
+              <p class="text-[7px] uppercase text-parchment-muted">Mins</p>
             </div>
             <div class="p-2 rounded-xl bg-midnight-surface/70 border border-midnight-border">
               <span id="crucible-sec" class="text-sm font-mono font-bold text-parchment">--</span>
-              <p class="text-[7.5px] uppercase text-parchment-muted">Secs</p>
+              <p class="text-[7px] uppercase text-parchment-muted">Secs</p>
             </div>
             <div class="p-2 rounded-xl bg-midnight-surface/70 border border-gold/30 bg-gold/10">
               <span id="crucible-ms" class="text-sm font-mono font-bold text-gold-light">000</span>
-              <p class="text-[7.5px] uppercase text-gold font-bold">ms</p>
+              <p class="text-[7px] uppercase text-gold font-bold">ms</p>
             </div>
           </div>
         </div>
@@ -573,7 +615,7 @@
           <div class="flex items-center justify-between pb-1 border-b border-midnight-border/60">
             <span class="text-[10px] uppercase font-serif font-bold text-gold">Interactive Distance Closer</span>
             <span class="text-[9px] font-mono text-rose-light bg-rose/15 px-2 py-0.5 rounded-full border border-rose/30">
-              Drag Minhaz to Tasu
+              Drag Minhaz ➔ Tasu
             </span>
           </div>
 
@@ -611,21 +653,23 @@
               <span id="slider-km-readout" class="text-xl font-serif font-extrabold text-gold tracking-tight">2,276 km</span>
             </div>
 
-            <!-- Range input: values 0 to 2276, so dragging right towards Tasu closes distance to 0 km -->
-            <input type="range" id="distance-slider" min="0" max="2276" value="0" step="1" oninput="handleDistanceSliderInput(this.value)" class="w-full">
+            <!-- Range input: values 0 to 2276 -->
+            <div class="relative py-1">
+              <input type="range" id="distance-slider" min="0" max="2276" value="0" step="1" oninput="handleDistanceSliderInput(this.value)" class="w-full">
+            </div>
 
-            <div class="flex justify-between text-[8px] font-mono text-parchment-muted/80">
+            <div class="flex justify-between text-[8px] font-mono text-parchment-muted/85">
               <span>✈️ Alor Setar (2,276 km)</span>
-              <span>Slide Right ➔</span>
+              <span class="text-gold animate-pulse">Drag Right ➔</span>
               <span>🏡 Under One Roof (0 km)</span>
             </div>
           </div>
 
           <!-- Success Banner revealed at 0 km -->
-          <div id="zero-km-banner" class="hidden p-3.5 rounded-2xl bg-gradient-to-r from-gold-dark via-gold to-rose-dark text-midnight text-center shadow-xl space-y-1 transform scale-95 transition-all">
-            <span class="text-2xl animate-pulse">💍🏡✨</span>
+          <div id="zero-km-banner" class="hidden p-4 rounded-2xl bg-gradient-to-r from-gold-dark via-gold to-rose text-midnight text-center shadow-[0_0_35px_rgba(230,202,133,0.6)] space-y-1.5 transform scale-95 transition-all">
+            <span class="text-3xl animate-bounce block">💍🏡✨</span>
             <h4 class="text-sm font-serif font-black tracking-wide uppercase">0 km • Under One Roof (Insha'Allah)</h4>
-            <p class="text-[10px] font-medium opacity-90">Every step, every sweat, every prayer brings us together.</p>
+            <p class="text-[10.5px] font-medium leading-tight">Every step, every prayer, every day brings us closer to our home.</p>
           </div>
         </div>
 
@@ -664,9 +708,9 @@
           </div>
         </div>
 
-        <!-- Story Card 2: Surma River & Keane Bridge -->
+        <!-- Story Card 2: Surma River & Keane Bridge (with resilient fallback) -->
         <div class="w-[290px] flex-shrink-0 snap-center rounded-3xl bg-midnight-card border border-gold/35 overflow-hidden shadow-2xl relative flex flex-col justify-end aspect-[3/4]">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Keane_Bridge_%26_Ali_Amjad%27s_Clock.jpg/800px-Keane_Bridge_%26_Ali_Amjad%27s_Clock.jpg" alt="Keane Bridge" class="absolute inset-0 w-full h-full object-cover">
+          <img src="https://images.unsplash.com/photo-1542385151-efd9000785a0?auto=format&fit=crop&w=900&q=80" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1588668214407-6ea9a6d8c272?auto=format&fit=crop&w=900&q=80';" alt="Surma River Bridge" class="absolute inset-0 w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark via-midnight-dark/60 to-transparent"></div>
           
           <div class="relative z-10 p-4 space-y-1.5">
@@ -712,9 +756,9 @@
           </div>
         </div>
 
-        <!-- Story Card 5: Masjid Zahir Alor Setar ↔ Sylhet -->
+        <!-- Story Card 5: Masjid Zahir Alor Setar ↔ Sylhet (with resilient fallback) -->
         <div class="w-[290px] flex-shrink-0 snap-center rounded-3xl bg-midnight-card border border-gold/35 overflow-hidden shadow-2xl relative flex flex-col justify-end aspect-[3/4]">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Masjid_Zahir_Alor_Setar.jpg/800px-Masjid_Zahir_Alor_Setar.jpg" alt="Masjid Zahir" class="absolute inset-0 w-full h-full object-cover">
+          <img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=900&q=80" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=900&q=80';" alt="Masjid Zahir" class="absolute inset-0 w-full h-full object-cover">
           <div class="absolute inset-0 bg-gradient-to-t from-midnight-dark via-midnight-dark/60 to-transparent"></div>
           
           <div class="relative z-10 p-4 space-y-1.5">
@@ -730,13 +774,13 @@
 
       </div>
 
-      <!-- Carousel swipe indicators -->
-      <div class="flex justify-center items-center gap-1.5 pt-1">
-        <span class="w-3 h-1 rounded-full bg-gold"></span>
-        <span class="w-1.5 h-1 rounded-full bg-midnight-border"></span>
-        <span class="w-1.5 h-1 rounded-full bg-midnight-border"></span>
-        <span class="w-1.5 h-1 rounded-full bg-midnight-border"></span>
-        <span class="w-1.5 h-1 rounded-full bg-midnight-border"></span>
+      <!-- Interactive Carousel Swipe Indicator Dots -->
+      <div id="carousel-dots" class="flex justify-center items-center gap-2 pt-1 cursor-pointer">
+        <button onclick="scrollCarouselToIndex(0)" class="w-4 h-1.5 rounded-full bg-gold transition-all" aria-label="Card 1"></button>
+        <button onclick="scrollCarouselToIndex(1)" class="w-1.5 h-1.5 rounded-full bg-midnight-border transition-all" aria-label="Card 2"></button>
+        <button onclick="scrollCarouselToIndex(2)" class="w-1.5 h-1.5 rounded-full bg-midnight-border transition-all" aria-label="Card 3"></button>
+        <button onclick="scrollCarouselToIndex(3)" class="w-1.5 h-1.5 rounded-full bg-midnight-border transition-all" aria-label="Card 4"></button>
+        <button onclick="scrollCarouselToIndex(4)" class="w-1.5 h-1.5 rounded-full bg-midnight-border transition-all" aria-label="Card 5"></button>
       </div>
     </section>
 
@@ -754,15 +798,15 @@
       </div>
 
       <!-- Initial State: 3D Shaking Gift Box -->
-      <div id="gift-box-gate" onclick="handleGiftBoxTap()" class="rounded-3xl bg-midnight-card border-2 border-gold/40 p-6 shadow-[0_0_40px_rgba(230,202,133,0.2)] text-center space-y-4 cursor-pointer transform active:scale-95 transition-all">
+      <div id="gift-box-gate" onclick="handleGiftBoxTap()" class="rounded-3xl bg-midnight-card border-2 border-gold/45 p-6 shadow-[0_0_45px_rgba(230,202,133,0.25)] text-center space-y-4 cursor-pointer transform active:scale-95 transition-all">
         
         <div class="relative py-4 flex justify-center">
-          <div id="gift-box-icon" class="text-7xl filter drop-shadow-[0_0_20px_rgba(230,202,133,0.7)] animate-shake-gift select-none">
+          <div id="gift-box-icon" class="text-7xl filter drop-shadow-[0_0_22px_rgba(230,202,133,0.75)] animate-shake-gift select-none">
             🎁
           </div>
           <!-- Sparkle decorations -->
-          <span class="absolute top-2 right-16 text-lg animate-ping">✨</span>
-          <span class="absolute bottom-2 left-16 text-lg animate-pulse">💖</span>
+          <span class="absolute top-2 right-14 text-lg animate-ping">✨</span>
+          <span class="absolute bottom-2 left-14 text-lg animate-pulse">💖</span>
         </div>
 
         <div class="space-y-1.5">
@@ -772,7 +816,7 @@
           <p id="gift-tap-status" class="text-xs font-semibold text-rose-light">
             Tap 3 Times to Unwrap (0/3)
           </p>
-          <div class="w-32 h-1.5 bg-midnight-dark mx-auto rounded-full overflow-hidden border border-midnight-border mt-2">
+          <div class="w-36 h-2 bg-midnight-dark mx-auto rounded-full overflow-hidden border border-midnight-border mt-2">
             <div id="gift-progress-bar" class="h-full bg-gradient-to-r from-gold to-rose w-0 transition-all duration-300"></div>
           </div>
         </div>
@@ -788,7 +832,7 @@
         <!-- Header status -->
         <div class="flex items-center justify-between pb-3 border-b border-midnight-border/70">
           <div class="flex items-center gap-2">
-            <span class="text-lg">🎙️</span>
+            <span class="text-xl">🎙️</span>
             <div>
               <h4 class="text-xs font-serif font-bold text-parchment">Minhaz's Voice Note</h4>
               <p class="text-[9px] text-rose">Birthday Message & 23rd Year Resolution</p>
@@ -803,7 +847,7 @@
             <!-- Vinyl Grooves -->
             <div class="w-24 h-24 rounded-full border border-gold/20 flex items-center justify-center">
               <div class="w-16 h-16 rounded-full border border-gold/30 flex items-center justify-center">
-                <!-- Center Label with Photo or Initials -->
+                <!-- Center Label with Initials -->
                 <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-gold to-rose flex items-center justify-center text-midnight font-bold text-xs shadow-inner">
                   T & M
                 </div>
@@ -833,7 +877,7 @@
 
         <!-- Audio Scrubber & Controls -->
         <div class="space-y-1.5">
-          <div class="w-full bg-midnight-dark h-2 rounded-full overflow-hidden cursor-pointer relative" onclick="handleAudioScrub(event)">
+          <div class="w-full bg-midnight-dark h-2.5 rounded-full overflow-hidden cursor-pointer relative" onclick="handleAudioScrub(event)">
             <div id="audio-progress-bar" class="h-full bg-gradient-to-r from-gold-dark via-gold to-rose w-0 transition-all"></div>
           </div>
           <div class="flex justify-between items-center text-[9px] font-mono text-parchment-muted">
@@ -843,15 +887,15 @@
           </div>
         </div>
 
-        <!-- Big Play Button & Audio Upload Fallback -->
+        <!-- Big Play Button & Controls -->
         <div class="flex items-center justify-between pt-1">
-          <label class="text-[9px] text-parchment-muted hover:text-gold flex items-center gap-1 cursor-pointer transition-colors">
+          <label class="text-[9px] text-parchment-muted hover:text-gold flex items-center gap-1 cursor-pointer transition-colors" title="Select audio file">
             <span>⬆️</span>
-            <span id="voice-upload-label">Change Voice</span>
+            <span id="voice-upload-label">Change Audio</span>
             <input type="file" id="voice-file-input" accept="audio/*" class="hidden" onchange="handleVoiceUpload(event)">
           </label>
 
-          <button id="master-play-btn" onclick="toggleAudioPlayback()" class="w-14 h-14 rounded-full bg-gradient-to-tr from-gold-dark via-gold to-rose-dark text-midnight flex items-center justify-center shadow-[0_0_25px_rgba(230,202,133,0.5)] active:scale-95 transition-transform">
+          <button id="master-play-btn" onclick="toggleAudioPlayback()" class="w-14 h-14 rounded-full bg-gradient-to-tr from-gold-dark via-gold to-rose-dark text-midnight flex items-center justify-center shadow-[0_0_25px_rgba(230,202,133,0.55)] active:scale-95 transition-transform" aria-label="Play or pause audio">
             <span id="master-play-glyph" class="text-2xl ml-1">▶</span>
           </button>
 
@@ -861,7 +905,15 @@
           </button>
         </div>
 
-        <!-- 3 Floating Promise Cards -->
+        <!-- Soft Harp Background Melody Toggle -->
+        <div class="flex items-center justify-center pt-1 border-t border-midnight-border/50">
+          <button id="harp-melody-toggle" onclick="toggleAmbientHarp()" class="px-3 py-1 rounded-full bg-midnight-dark border border-gold/30 text-[9px] text-gold-light flex items-center gap-1.5 hover:border-gold transition-colors">
+            <span>🎵</span>
+            <span id="harp-toggle-text">Ambient Harp: Off</span>
+          </button>
+        </div>
+
+        <!-- 3 Floating Promise Cards from Masterprompt -->
         <div class="space-y-2.5 pt-3 border-t border-midnight-border/60">
           <span class="text-[9px] uppercase tracking-widest text-gold font-bold block text-center">Minhaz's 3 Lifelong Promises</span>
 
@@ -872,7 +924,7 @@
             </p>
           </div>
 
-          <div class="p-3 rounded-2xl bg-midnight-surface/80 border border-gold/25 space-y-1">
+          <div class="p-3 rounded-2xl bg-midnight-surface/80 border border-rose/30 space-y-1">
             <span class="text-[9px] font-bold text-rose uppercase tracking-wider">Promise II</span>
             <p class="text-[11px] text-parchment font-light leading-relaxed">
               “I am building myself to lead, protect, and provide for you.”
@@ -889,12 +941,12 @@
 
       </div>
 
-      <!-- Hidden Native Audio Element (loads voice note files with fallback) -->
-      <audio id="main-audio-element" preload="auto">
-        <source src="voice-note.m4a" type="audio/mp4">
-        <source src="birthday%20audio.m4a" type="audio/mp4">
-        <source src="birthday audio.m4a" type="audio/mp4">
-        <source src="voice-note.mp3" type="audio/mpeg">
+      <!-- Native Audio Element with multi-source fallback -->
+      <audio id="main-audio-element" preload="metadata" playsinline>
+        <source src="./voice-note.m4a" type="audio/mp4">
+        <source src="./birthday%20audio.m4a" type="audio/mp4">
+        <source src="./birthday audio.m4a" type="audio/mp4">
+        <source src="./voice-note.mp3">
       </audio>
 
     </section>
@@ -915,7 +967,7 @@
       </div>
 
       <!-- Scratch Box Container -->
-      <div class="relative w-full min-h-[260px] rounded-3xl bg-midnight-card border-2 border-gold/40 shadow-xl overflow-hidden p-5 flex flex-col justify-center text-center">
+      <div class="relative w-full min-h-[270px] rounded-3xl bg-midnight-card border-2 border-gold/40 shadow-xl overflow-hidden p-5 flex flex-col justify-center text-center">
         
         <!-- Underlying Revealed Message (Art & Soul: EN + BN) -->
         <div id="scratch-secret-message" class="space-y-3 select-none">
@@ -964,18 +1016,18 @@
       <div class="space-y-3.5">
         
         <!-- CARD 1: Our Garment & Peace -->
-        <div class="perspective-1000 w-full min-h-[170px]" onclick="toggleCardFlip(this)">
-          <div class="card-inner transform-style-3d relative w-full h-full min-h-[170px] rounded-3xl cursor-pointer">
+        <div class="perspective-1000 w-full min-h-[220px]" onclick="toggleCardFlip(this)">
+          <div class="card-inner transform-style-3d relative w-full h-full min-h-[220px] rounded-3xl cursor-pointer">
             
             <!-- Front -->
             <div class="backface-hidden absolute inset-0 w-full h-full rounded-3xl bg-midnight-card border-2 border-gold/35 p-5 flex flex-col justify-between shadow-lg">
               <div class="flex justify-between items-center">
                 <span class="text-[9px] font-mono font-bold text-gold uppercase tracking-wider">Ar-Rum 30:21 & Al-Baqarah 2:187</span>
-                <span class="text-sm">🕊️</span>
+                <span class="text-base">🕊️</span>
               </div>
-              <div class="text-center space-y-1 my-auto">
+              <div class="text-center space-y-1.5 my-auto">
                 <h4 class="text-base font-serif font-bold text-parchment">Our Garment & Peace</h4>
-                <p class="text-[10px] text-parchment-muted">The Divine Blueprint of Husband & Wife</p>
+                <p class="text-[10.5px] text-parchment-muted">The Divine Blueprint of Husband & Wife</p>
               </div>
               <div class="flex justify-between items-center text-[9px] text-gold/80 pt-2 border-t border-midnight-border">
                 <span>Tap to flip 🔄</span>
@@ -984,36 +1036,36 @@
             </div>
 
             <!-- Back -->
-            <div class="backface-hidden rotate-y-180 absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-midnight-surface to-midnight-card border-2 border-gold/60 p-5 flex flex-col justify-between shadow-xl">
+            <div class="backface-hidden rotate-y-180 absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-midnight-surface to-midnight-card border-2 border-gold/60 p-4 sm:p-5 flex flex-col justify-between shadow-xl overflow-y-auto">
               <div class="space-y-2 text-center my-auto">
-                <p class="text-[10.5px] text-parchment leading-relaxed font-light">
+                <p class="text-[10px] sm:text-[10.5px] text-parchment leading-relaxed font-light">
                   “He created spouses so you may find Sakinah (tranquility) in them, and placed between you love and mercy. They are a garment for you, and you are a garment for them.”
                 </p>
                 <div class="pt-1.5 border-t border-midnight-border/60">
-                  <p class="text-[10.5px] font-bengali text-gold-light leading-relaxed">
+                  <p class="text-[10px] sm:text-[10.5px] font-bengali text-gold-light leading-relaxed">
                     “তিনি তোমাদের জন্য তোমাদের থেকেই সঙ্গিনী সৃষ্টি করেছেন, যাতে তোমরা তাদের কাছে প্রশান্তি লাভ করতে পারো... তারা তোমাদের জন্য পরিচ্ছদ এবং তোমরাও তাদের জন্য পরিচ্ছদ।”
                   </p>
                 </div>
               </div>
-              <div class="text-[8.5px] text-right text-rose-light">Tap to flip back ↩</div>
+              <div class="text-[8.5px] text-right text-rose-light pt-1">Tap to flip back ↩</div>
             </div>
 
           </div>
         </div>
 
         <!-- CARD 2: The Righteous, Understanding Wife -->
-        <div class="perspective-1000 w-full min-h-[170px]" onclick="toggleCardFlip(this)">
-          <div class="card-inner transform-style-3d relative w-full h-full min-h-[170px] rounded-3xl cursor-pointer">
+        <div class="perspective-1000 w-full min-h-[220px]" onclick="toggleCardFlip(this)">
+          <div class="card-inner transform-style-3d relative w-full h-full min-h-[220px] rounded-3xl cursor-pointer">
             
             <!-- Front -->
             <div class="backface-hidden absolute inset-0 w-full h-full rounded-3xl bg-midnight-card border-2 border-rose/35 p-5 flex flex-col justify-between shadow-lg">
               <div class="flex justify-between items-center">
                 <span class="text-[9px] font-mono font-bold text-rose-light uppercase tracking-wider">Sahih Muslim 1467 & An-Nasa'i 3231</span>
-                <span class="text-sm">👑</span>
+                <span class="text-base">👑</span>
               </div>
-              <div class="text-center space-y-1 my-auto">
+              <div class="text-center space-y-1.5 my-auto">
                 <h4 class="text-base font-serif font-bold text-parchment">The Righteous, Understanding Wife</h4>
-                <p class="text-[10px] text-parchment-muted">The World's Greatest Treasure</p>
+                <p class="text-[10.5px] text-parchment-muted">The World's Greatest Treasure</p>
               </div>
               <div class="flex justify-between items-center text-[9px] text-rose-light/80 pt-2 border-t border-midnight-border">
                 <span>Tap to flip 🔄</span>
@@ -1022,36 +1074,36 @@
             </div>
 
             <!-- Back -->
-            <div class="backface-hidden rotate-y-180 absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-midnight-surface to-midnight-card border-2 border-rose/60 p-5 flex flex-col justify-between shadow-xl">
+            <div class="backface-hidden rotate-y-180 absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-midnight-surface to-midnight-card border-2 border-rose/60 p-4 sm:p-5 flex flex-col justify-between shadow-xl overflow-y-auto">
               <div class="space-y-2 text-center my-auto">
-                <p class="text-[10.5px] text-parchment leading-relaxed font-light">
+                <p class="text-[10px] sm:text-[10.5px] text-parchment leading-relaxed font-light">
                   “The best treasure of this world is a righteous wife: when her husband looks at her brings him joy, when he speaks she understands and obeys in goodness, and in his absence she guards herself and his trust.”
                 </p>
                 <div class="pt-1.5 border-t border-midnight-border/60">
-                  <p class="text-[10.5px] font-bengali text-rose-light leading-relaxed">
+                  <p class="text-[10px] sm:text-[10.5px] font-bengali text-rose-light leading-relaxed">
                     “দুনিয়ার সর্বোত্তম সম্পদ হলো একজন নেককার স্ত্রী—যার দিকে তাকালে হৃদয়ে প্রশান্তি আসে, কথা বললে যে তা বুঝে ও মান্য করে এবং আড়ালেও স্বামীর আমানতের খেয়ানত করে না।”
                   </p>
                 </div>
               </div>
-              <div class="text-[8.5px] text-right text-gold-light">Tap to flip back ↩</div>
+              <div class="text-[8.5px] text-right text-gold-light pt-1">Tap to flip back ↩</div>
             </div>
 
           </div>
         </div>
 
         <!-- CARD 3: Sabr Through Delays & Storms -->
-        <div class="perspective-1000 w-full min-h-[170px]" onclick="toggleCardFlip(this)">
-          <div class="card-inner transform-style-3d relative w-full h-full min-h-[170px] rounded-3xl cursor-pointer">
+        <div class="perspective-1000 w-full min-h-[220px]" onclick="toggleCardFlip(this)">
+          <div class="card-inner transform-style-3d relative w-full h-full min-h-[220px] rounded-3xl cursor-pointer">
             
             <!-- Front -->
             <div class="backface-hidden absolute inset-0 w-full h-full rounded-3xl bg-midnight-card border-2 border-gold/35 p-5 flex flex-col justify-between shadow-lg">
               <div class="flex justify-between items-center">
                 <span class="text-[9px] font-mono font-bold text-gold uppercase tracking-wider">Al-Baqarah 2:153 & Ash-Sharh 94:5-6</span>
-                <span class="text-sm">🛡️</span>
+                <span class="text-base">🛡️</span>
               </div>
-              <div class="text-center space-y-1 my-auto">
+              <div class="text-center space-y-1.5 my-auto">
                 <h4 class="text-base font-serif font-bold text-parchment">Sabr Through Delays & Storms</h4>
-                <p class="text-[10px] text-parchment-muted">With Hardship Comes Inevitable Ease</p>
+                <p class="text-[10.5px] text-parchment-muted">With Hardship Comes Inevitable Ease</p>
               </div>
               <div class="flex justify-between items-center text-[9px] text-gold/80 pt-2 border-t border-midnight-border">
                 <span>Tap to flip 🔄</span>
@@ -1060,18 +1112,18 @@
             </div>
 
             <!-- Back -->
-            <div class="backface-hidden rotate-y-180 absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-midnight-surface to-midnight-card border-2 border-gold/60 p-5 flex flex-col justify-between shadow-xl">
+            <div class="backface-hidden rotate-y-180 absolute inset-0 w-full h-full rounded-3xl bg-gradient-to-br from-midnight-surface to-midnight-card border-2 border-gold/60 p-4 sm:p-5 flex flex-col justify-between shadow-xl overflow-y-auto">
               <div class="space-y-2 text-center my-auto">
-                <p class="text-[10.5px] text-parchment leading-relaxed font-light">
+                <p class="text-[10px] sm:text-[10.5px] text-parchment leading-relaxed font-light">
                   “Seek help through Sabr and Salah. Truly, with every hardship comes ease. Whether marriage takes a year or longer, we face every test together with patience.”
                 </p>
                 <div class="pt-1.5 border-t border-midnight-border/60">
-                  <p class="text-[10.5px] font-bengali text-gold-light leading-relaxed">
+                  <p class="text-[10px] sm:text-[10.5px] font-bengali text-gold-light leading-relaxed">
                     “তোমরা ধৈর্য ও সালাতের মাধ্যমে সাহায্য প্রার্থনা করো; নিশ্চয়ই কষ্টের সাথেই রয়েছে স্বস্তি। বিয়েতে যতটুকু সময়ই লাগুক বা ভবিষ্যতে যত পরীক্ষাই আসুক, আমরা সবরের সাথে এক হয়ে থাকব।”
                   </p>
                 </div>
               </div>
-              <div class="text-[8.5px] text-right text-rose-light">Tap to flip back ↩</div>
+              <div class="text-[8.5px] text-right text-rose-light pt-1">Tap to flip back ↩</div>
             </div>
 
           </div>
@@ -1098,55 +1150,55 @@
         <!-- Lanterns Counter & Status -->
         <div class="flex items-center justify-between text-[10px] font-mono text-gold-light pb-2 border-b border-midnight-border">
           <span id="lanterns-popped-counter">Lanterns Blessed: 0 of 6 🏮</span>
-          <span class="text-rose animate-pulse">Tap any lantern below</span>
+          <span id="lantern-header-hint" class="text-rose animate-pulse">Tap any lantern below</span>
         </div>
 
         <!-- 6 Floating Lanterns Grid -->
         <div class="grid grid-cols-3 gap-2.5 py-2">
           
           <!-- Lantern 1: Health & 23rd Year -->
-          <button id="lantern-btn-0" onclick="popSkyLantern(0)" class="p-3 rounded-2xl bg-gradient-to-b from-midnight-surface to-midnight-dark border border-gold/30 flex flex-col items-center justify-center space-y-1 transform active:scale-90 transition-transform">
-            <span class="text-3xl filter drop-shadow-[0_0_8px_rgba(230,202,133,0.8)] animate-float-gentle">🏮</span>
+          <button id="lantern-btn-0" onclick="popSkyLantern(0)" class="p-3 rounded-2xl bg-gradient-to-b from-midnight-surface to-midnight-dark border border-gold/30 flex flex-col items-center justify-center space-y-1 transform active:scale-90 transition-all hover:border-gold">
+            <span id="lantern-icon-0" class="text-3xl filter drop-shadow-[0_0_8px_rgba(230,202,133,0.8)] animate-float-gentle">🏮</span>
             <span class="text-[9px] font-serif font-bold text-gold-light text-center leading-tight">Health & 23rd Year</span>
           </button>
 
           <!-- Lantern 2: Her Art & Creativity -->
-          <button id="lantern-btn-1" onclick="popSkyLantern(1)" class="p-3 rounded-2xl bg-gradient-to-b from-midnight-surface to-midnight-dark border border-rose/30 flex flex-col items-center justify-center space-y-1 transform active:scale-90 transition-transform">
-            <span class="text-3xl filter drop-shadow-[0_0_8px_rgba(232,165,152,0.8)] animate-float-gentle" style="animation-delay: 0.5s;">🏮</span>
+          <button id="lantern-btn-1" onclick="popSkyLantern(1)" class="p-3 rounded-2xl bg-gradient-to-b from-midnight-surface to-midnight-dark border border-rose/30 flex flex-col items-center justify-center space-y-1 transform active:scale-90 transition-all hover:border-rose" style="animation-delay: 0.4s;">
+            <span id="lantern-icon-1" class="text-3xl filter drop-shadow-[0_0_8px_rgba(232,165,152,0.8)] animate-float-gentle">🏮</span>
             <span class="text-[9px] font-serif font-bold text-rose-light text-center leading-tight">Her Art & Soul</span>
           </button>
 
           <!-- Lantern 3: Deen & Salah -->
-          <button id="lantern-btn-2" onclick="popSkyLantern(2)" class="p-3 rounded-2xl bg-gradient-to-b from-midnight-surface to-midnight-dark border border-gold/30 flex flex-col items-center justify-center space-y-1 transform active:scale-90 transition-transform">
-            <span class="text-3xl filter drop-shadow-[0_0_8px_rgba(230,202,133,0.8)] animate-float-gentle" style="animation-delay: 1s;">🏮</span>
+          <button id="lantern-btn-2" onclick="popSkyLantern(2)" class="p-3 rounded-2xl bg-gradient-to-b from-midnight-surface to-midnight-dark border border-gold/30 flex flex-col items-center justify-center space-y-1 transform active:scale-90 transition-all hover:border-gold" style="animation-delay: 0.8s;">
+            <span id="lantern-icon-2" class="text-3xl filter drop-shadow-[0_0_8px_rgba(230,202,133,0.8)] animate-float-gentle">🏮</span>
             <span class="text-[9px] font-serif font-bold text-gold-light text-center leading-tight">Deen & Salah</span>
           </button>
 
           <!-- Lantern 4: Protection from Evil Eye -->
-          <button id="lantern-btn-3" onclick="popSkyLantern(3)" class="p-3 rounded-2xl bg-gradient-to-b from-midnight-surface to-midnight-dark border border-rose/30 flex flex-col items-center justify-center space-y-1 transform active:scale-90 transition-transform">
-            <span class="text-3xl filter drop-shadow-[0_0_8px_rgba(232,165,152,0.8)] animate-float-gentle" style="animation-delay: 1.5s;">🏮</span>
+          <button id="lantern-btn-3" onclick="popSkyLantern(3)" class="p-3 rounded-2xl bg-gradient-to-b from-midnight-surface to-midnight-dark border border-rose/30 flex flex-col items-center justify-center space-y-1 transform active:scale-90 transition-all hover:border-rose" style="animation-delay: 1.2s;">
+            <span id="lantern-icon-3" class="text-3xl filter drop-shadow-[0_0_8px_rgba(232,165,152,0.8)] animate-float-gentle">🏮</span>
             <span class="text-[9px] font-serif font-bold text-rose-light text-center leading-tight">Divine Shield</span>
           </button>
 
           <!-- Lantern 5: Family in Sylhet -->
-          <button id="lantern-btn-4" onclick="popSkyLantern(4)" class="p-3 rounded-2xl bg-gradient-to-b from-midnight-surface to-midnight-dark border border-gold/30 flex flex-col items-center justify-center space-y-1 transform active:scale-90 transition-transform">
-            <span class="text-3xl filter drop-shadow-[0_0_8px_rgba(230,202,133,0.8)] animate-float-gentle" style="animation-delay: 2s;">🏮</span>
+          <button id="lantern-btn-4" onclick="popSkyLantern(4)" class="p-3 rounded-2xl bg-gradient-to-b from-midnight-surface to-midnight-dark border border-gold/30 flex flex-col items-center justify-center space-y-1 transform active:scale-90 transition-all hover:border-gold" style="animation-delay: 1.6s;">
+            <span id="lantern-icon-4" class="text-3xl filter drop-shadow-[0_0_8px_rgba(230,202,133,0.8)] animate-float-gentle">🏮</span>
             <span class="text-[9px] font-serif font-bold text-gold-light text-center leading-tight">Sylhet Parents</span>
           </button>
 
           <!-- Lantern 6: Halal Nikah (0 km) -->
-          <button id="lantern-btn-5" onclick="popSkyLantern(5)" class="p-3 rounded-2xl bg-gradient-to-b from-midnight-surface to-midnight-dark border border-gold/50 shadow-[0_0_15px_rgba(230,202,133,0.3)] flex flex-col items-center justify-center space-y-1 transform active:scale-90 transition-transform">
-            <span class="text-3xl filter drop-shadow-[0_0_10px_rgba(230,202,133,1)] animate-bounce" style="animation-duration: 2s;">🏮</span>
+          <button id="lantern-btn-5" onclick="popSkyLantern(5)" class="p-3 rounded-2xl bg-gradient-to-b from-midnight-surface to-midnight-dark border border-gold/50 shadow-[0_0_15px_rgba(230,202,133,0.3)] flex flex-col items-center justify-center space-y-1 transform active:scale-90 transition-all hover:border-gold" style="animation-delay: 2s;">
+            <span id="lantern-icon-5" class="text-3xl filter drop-shadow-[0_0_12px_rgba(230,202,133,1)] animate-bounce">🏮</span>
             <span class="text-[9px] font-serif font-bold text-gold text-center leading-tight">Our Nikah (0 km)</span>
           </button>
 
         </div>
 
         <!-- Lantern Revealed Modal / Card -->
-        <div id="lantern-modal" class="hidden p-4 rounded-2xl bg-midnight-dark border border-gold/40 shadow-2xl space-y-2 transform transition-all duration-300">
+        <div id="lantern-modal" class="hidden p-4 rounded-2xl bg-midnight-dark border border-gold/45 shadow-2xl space-y-2 transform transition-all duration-300">
           <div class="flex items-center justify-between pb-1 border-b border-midnight-border">
             <span id="lantern-modal-title" class="text-xs font-serif font-bold text-gold-light">Dua Unlocked</span>
-            <button onclick="closeLanternModal()" class="text-xs text-parchment-muted hover:text-rose">✕</button>
+            <button onclick="closeLanternModal()" class="text-sm text-parchment-muted hover:text-rose p-1">✕</button>
           </div>
           <p id="lantern-modal-en" class="text-[11px] text-parchment leading-relaxed font-light"></p>
           <p id="lantern-modal-bn" class="text-[11px] font-bengali text-rose-light leading-relaxed"></p>
@@ -1190,10 +1242,10 @@
           <span>✨</span>
         </button>
 
-        <!-- Revealed Final Letter from Minhaz -->
+        <!-- Revealed Final Letter from Minhaz (from Masterprompt) -->
         <div id="final-letter-box" class="hidden opacity-0 transition-all duration-1000 transform translate-y-6 pt-3 space-y-4">
-          <div class="p-5 rounded-2xl bg-midnight-dark/95 border-2 border-gold/60 text-center shadow-gold space-y-3 relative">
-            <span class="text-3xl animate-bounce">💌</span>
+          <div class="p-5 rounded-2xl bg-midnight-dark/95 border-2 border-gold/60 text-center shadow-[0_0_35px_rgba(230,202,133,0.3)] space-y-3 relative">
+            <span class="text-3xl animate-bounce inline-block">💌</span>
 
             <h4 class="text-base font-serif font-bold text-3d-tasnia">
               Happy 23rd Birthday, My Tasu.
@@ -1216,9 +1268,9 @@
     </section>
 
     <!-- Footer -->
-    <footer class="mt-4 mb-2 text-center text-[10px] text-parchment-muted/60 font-light space-y-1">
-      <p class="font-serif italic text-gold/60">“And what Allah folds together, no distance of map can delay.”</p>
-      <p>© 2003–2026 Tasnia Yeasmin Suraiya. Created with love by Minhaz.</p>
+    <footer class="mt-4 mb-2 text-center text-[10px] text-parchment-muted/65 font-light space-y-1">
+      <p class="font-serif italic text-gold/70">“And what Allah folds together, no distance of map can delay.”</p>
+      <p>Tasnia (My Tasu) • Born 31 October 2003 • Built with love by Minhaz</p>
     </footer>
 
   </div>
@@ -1226,7 +1278,7 @@
   <!-- ============================================================== -->
   <!-- 7. STICKY "REACTION BLASTER" BAR (BOTTOM-RIGHT GLASS PILL)     -->
   <!-- ============================================================== -->
-  <div id="reaction-blaster-bar" class="fixed bottom-4 right-4 z-40 bg-midnight-dark/90 backdrop-blur-md border border-gold/40 rounded-full px-3 py-2 flex items-center gap-2 shadow-[0_4px_25px_rgba(0,0,0,0.8)]">
+  <div id="reaction-blaster-bar" class="fixed right-4 z-40 bg-midnight-dark/90 backdrop-blur-md border border-gold/40 rounded-full px-3 py-2 flex items-center gap-2 shadow-[0_4px_25px_rgba(0,0,0,0.85)] safe-bottom-fixed">
     <button onclick="shootReactionFountain('💖', event)" class="w-10 h-10 rounded-full bg-rose/15 border border-rose/30 flex items-center justify-center text-lg active:scale-75 transition-transform" title="Love">
       💖
     </button>
@@ -1246,7 +1298,7 @@
   <!-- ============================================================== -->
   <script>
     /* -----------------------------------------------------------
-       A. DATES & CHRONOMETER CONFIG
+       A. DATES & CACHED FORMATTERS (Optimized for 60/120fps)
     ----------------------------------------------------------- */
     const TASU_BIRTH_DATE = new Date('2003-10-31T00:00:00+06:00'); // Sylhet BST
     const WE_MET_DATE = new Date('2021-02-01T00:00:00+06:00');
@@ -1254,94 +1306,112 @@
 
     let activeTimeTab = 0;
 
+    // Cache Intl.DateTimeFormat objects to prevent high GC overhead on mobile
+    const mytFormatter = new Intl.DateTimeFormat('en-GB', {
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Kuala_Lumpur'
+    });
+    const bstFormatter = new Intl.DateTimeFormat('en-GB', {
+      hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false, timeZone: 'Asia/Dhaka'
+    });
+
+    // Cached DOM Element References
+    const elLifeYears = document.getElementById('life-years');
+    const elLifeMonths = document.getElementById('life-months');
+    const elLifeWeeks = document.getElementById('life-weeks');
+    const elLifeDays = document.getElementById('life-days');
+    const elLifeHours = document.getElementById('life-hours');
+    const elLifeMinutes = document.getElementById('life-minutes');
+    const elLifeSec = document.getElementById('life-seconds');
+    const elLifeMs = document.getElementById('life-ms');
+
+    const elMetYears = document.getElementById('met-years');
+    const elMetMonths = document.getElementById('met-months');
+    const elMetDays = document.getElementById('met-days');
+    const elMetSeconds = document.getElementById('met-seconds');
+    const elMetMs = document.getElementById('met-ms');
+
+    const elCDays = document.getElementById('crucible-days');
+    const elCHours = document.getElementById('crucible-hours');
+    const elCMinutes = document.getElementById('crucible-minutes');
+    const elCSec = document.getElementById('crucible-sec');
+    const elCMs = document.getElementById('crucible-ms');
+
+    const elClockMY = document.getElementById('clock-alor-setar');
+    const elClockBD = document.getElementById('clock-sylhet');
+
     function updateTimeMachineTicks() {
       const now = new Date();
+      const ms = (now.getMilliseconds()).toString().padStart(3, '0');
 
-      // 1. Life Calculations
-      const lifeDiff = now - TASU_BIRTH_DATE;
-      if (lifeDiff > 0) {
-        const totalSec = Math.floor(lifeDiff / 1000);
-        const totalMin = Math.floor(totalSec / 60);
-        const totalHr = Math.floor(totalMin / 60);
-        const totalDays = Math.floor(totalHr / 24);
-        const totalWeeks = Math.floor(totalDays / 7);
-        const totalMonths = Math.floor(totalDays / 30.4375);
-        
-        let years = now.getFullYear() - TASU_BIRTH_DATE.getFullYear();
-        if (now.getMonth() < TASU_BIRTH_DATE.getMonth() || (now.getMonth() === TASU_BIRTH_DATE.getMonth() && now.getDate() < TASU_BIRTH_DATE.getDate())) {
-          years--;
+      // 1. Life Calculations (Tab 0)
+      if (activeTimeTab === 0) {
+        const lifeDiff = now - TASU_BIRTH_DATE;
+        if (lifeDiff > 0) {
+          const totalSec = Math.floor(lifeDiff / 1000);
+          const totalMin = Math.floor(totalSec / 60);
+          const totalHr = Math.floor(totalMin / 60);
+          const totalDays = Math.floor(totalHr / 24);
+          const totalWeeks = Math.floor(totalDays / 7);
+          const totalMonths = Math.floor(totalDays / 30.4375);
+          
+          let years = now.getFullYear() - TASU_BIRTH_DATE.getFullYear();
+          if (now.getMonth() < TASU_BIRTH_DATE.getMonth() || (now.getMonth() === TASU_BIRTH_DATE.getMonth() && now.getDate() < TASU_BIRTH_DATE.getDate())) {
+            years--;
+          }
+
+          if (elLifeYears) elLifeYears.textContent = years;
+          if (elLifeMonths) elLifeMonths.textContent = totalMonths.toLocaleString();
+          if (elLifeWeeks) elLifeWeeks.textContent = totalWeeks.toLocaleString();
+          if (elLifeDays) elLifeDays.textContent = totalDays.toLocaleString();
+          if (elLifeHours) elLifeHours.textContent = totalHr.toLocaleString();
+          if (elLifeMinutes) elLifeMinutes.textContent = (totalMin % 60).toString().padStart(2, '0');
+          if (elLifeSec) elLifeSec.textContent = (totalSec % 60).toString().padStart(2, '0');
+          if (elLifeMs) elLifeMs.textContent = ms;
         }
-
-        const ms = (now.getMilliseconds()).toString().padStart(3, '0');
-
-        const elLifeYears = document.getElementById('life-years');
-        const elLifeMonths = document.getElementById('life-months');
-        const elLifeWeeks = document.getElementById('life-weeks');
-        const elLifeDays = document.getElementById('life-days');
-        const elLifeHours = document.getElementById('life-hours');
-        const elLifeMinutes = document.getElementById('life-minutes');
-        const elLifeSec = document.getElementById('life-seconds');
-        const elLifeMs = document.getElementById('life-ms');
-
-        if (elLifeYears) elLifeYears.textContent = years;
-        if (elLifeMonths) elLifeMonths.textContent = totalMonths.toLocaleString();
-        if (elLifeWeeks) elLifeWeeks.textContent = totalWeeks.toLocaleString();
-        if (elLifeDays) elLifeDays.textContent = totalDays.toLocaleString();
-        if (elLifeHours) elLifeHours.textContent = totalHr.toLocaleString();
-        if (elLifeMinutes) elLifeMinutes.textContent = (totalMin % 60).toString().padStart(2, '0');
-        if (elLifeSec) elLifeSec.textContent = (totalSec % 60).toString().padStart(2, '0');
-        if (elLifeMs) elLifeMs.textContent = ms;
       }
 
-      // 2. We Met Calculations (2021-02-01)
-      const metDiff = now - WE_MET_DATE;
-      if (metDiff > 0) {
-        const metTotalSec = Math.floor(metDiff / 1000);
-        const metTotalDays = Math.floor(metTotalSec / 86400);
-        const metMonths = Math.floor(metTotalDays / 30.4375);
-        let metYears = now.getFullYear() - WE_MET_DATE.getFullYear();
-        if (now.getMonth() < WE_MET_DATE.getMonth() || (now.getMonth() === WE_MET_DATE.getMonth() && now.getDate() < WE_MET_DATE.getDate())) {
-          metYears--;
+      // 2. We Met Calculations (Tab 1 - Feb 1, 2021)
+      else if (activeTimeTab === 1) {
+        const metDiff = now - WE_MET_DATE;
+        if (metDiff > 0) {
+          const metTotalSec = Math.floor(metDiff / 1000);
+          const metTotalDays = Math.floor(metTotalSec / 86400);
+          const metMonths = Math.floor(metTotalDays / 30.4375);
+          let metYears = now.getFullYear() - WE_MET_DATE.getFullYear();
+          if (now.getMonth() < WE_MET_DATE.getMonth() || (now.getMonth() === WE_MET_DATE.getMonth() && now.getDate() < WE_MET_DATE.getDate())) {
+            metYears--;
+          }
+
+          if (elMetYears) elMetYears.textContent = metYears;
+          if (elMetMonths) elMetMonths.textContent = metMonths;
+          if (elMetDays) elMetDays.textContent = metTotalDays.toLocaleString();
+          if (elMetSeconds) elMetSeconds.textContent = (metTotalSec % 60).toString().padStart(2, '0');
+          if (elMetMs) elMetMs.textContent = ms;
         }
-
-        const elMetYears = document.getElementById('met-years');
-        const elMetMonths = document.getElementById('met-months');
-        const elMetDays = document.getElementById('met-days');
-        const elMetMs = document.getElementById('met-ms');
-
-        if (elMetYears) elMetYears.textContent = metYears;
-        if (elMetMonths) elMetMonths.textContent = metMonths;
-        if (elMetDays) elMetDays.textContent = metTotalDays.toLocaleString();
-        if (elMetMs) elMetMs.textContent = (now.getMilliseconds()).toString().padStart(3, '0');
       }
 
-      // 3. Crucible Eid Calculations (2023-04-22)
-      const crucDiff = now - CRUCIBLE_EID_DATE;
-      if (crucDiff > 0) {
-        const cTotalSec = Math.floor(crucDiff / 1000);
-        const cHours = Math.floor(cTotalSec / 3600);
-        const cDays = Math.floor(cHours / 24);
+      // 3. Crucible Eid Calculations (Tab 2 - Apr 22, 2023)
+      else if (activeTimeTab === 2) {
+        const crucDiff = now - CRUCIBLE_EID_DATE;
+        if (crucDiff > 0) {
+          const cTotalSec = Math.floor(crucDiff / 1000);
+          const cMinutes = Math.floor(cTotalSec / 60);
+          const cHours = Math.floor(cMinutes / 60);
+          const cDays = Math.floor(cHours / 24);
 
-        const elCDays = document.getElementById('crucible-days');
-        const elCHours = document.getElementById('crucible-hours');
-        const elCSec = document.getElementById('crucible-sec');
-        const elCMs = document.getElementById('crucible-ms');
-
-        if (elCDays) elCDays.textContent = cDays.toLocaleString();
-        if (elCHours) elCHours.textContent = (cHours % 24).toString().padStart(2, '0');
-        if (elCSec) elCSec.textContent = (cTotalSec % 60).toString().padStart(2, '0');
-        if (elCMs) elCMs.textContent = (now.getMilliseconds()).toString().padStart(3, '0');
+          if (elCDays) elCDays.textContent = cDays.toLocaleString();
+          if (elCHours) elCHours.textContent = (cHours % 24).toString().padStart(2, '0');
+          if (elCMinutes) elCMinutes.textContent = (cMinutes % 60).toString().padStart(2, '0');
+          if (elCSec) elCSec.textContent = (cTotalSec % 60).toString().padStart(2, '0');
+          if (elCMs) elCMs.textContent = ms;
+        }
       }
 
       // 4. Clocks for Alor Setar (MYT) & Sylhet (BST)
-      const fmtOpt = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
-      const myt = new Intl.DateTimeFormat('en-GB', { ...fmtOpt, timeZone: 'Asia/Kuala_Lumpur' }).format(now);
-      const bst = new Intl.DateTimeFormat('en-GB', { ...fmtOpt, timeZone: 'Asia/Dhaka' }).format(now);
-
-      const elClockMY = document.getElementById('clock-alor-setar');
-      const elClockBD = document.getElementById('clock-sylhet');
-      if (elClockMY) elClockMY.textContent = `MYT: ${myt}`;
-      if (elClockBD) elClockBD.textContent = `BST: ${bst}`;
+      else if (activeTimeTab === 3) {
+        if (elClockMY) elClockMY.textContent = `MYT: ${mytFormatter.format(now)}`;
+        if (elClockBD) elClockBD.textContent = `BST: ${bstFormatter.format(now)}`;
+      }
 
       requestAnimationFrame(updateTimeMachineTicks);
     }
@@ -1373,11 +1443,11 @@
 
       if (distance === 0) {
         banner.classList.remove('hidden');
-        setTimeout(() => banner.style.transform = 'scale(1)', 50);
+        setTimeout(() => banner.style.transform = 'scale(1)', 40);
 
         if (!hasTriggeredZeroKmFireworks) {
           hasTriggeredZeroKmFireworks = true;
-          fireDualCannons();
+          triggerWeddingFireworks();
           playCelebrationChime();
         }
       } else {
@@ -1388,57 +1458,89 @@
     }
 
     /* -----------------------------------------------------------
-       B. CELEBRATION ENGINE: DUAL CANNONS & RAIN
+       B. CELEBRATION ENGINE: DUAL CANNONS WITH EMOJI BURSTS
     ----------------------------------------------------------- */
+    const CELEBRATION_EMOJIS = ['❤️', '💖', '🌹', '🎉', '✨', '🎂', '🦋'];
+
     function fireDualCannons() {
       if (typeof confetti !== 'function') return;
 
-      const emojis = ['❤️', '💖', '🌹', '🎉', '✨', '🎂', '🦋'];
+      const goldColors = ['#E6CA85', '#E8A598', '#FAF7F2', '#DFBA6B', '#F7EBC6'];
 
       // Left Cannon
       confetti({
-        particleCount: 60,
+        particleCount: 65,
         angle: 60,
-        spread: 55,
-        origin: { x: 0, y: 0.7 },
-        colors: ['#E6CA85', '#E8A598', '#FAF7F2', '#DFBA6B']
+        spread: 60,
+        origin: { x: 0, y: 0.72 },
+        colors: goldColors
       });
 
       // Right Cannon
       confetti({
-        particleCount: 60,
+        particleCount: 65,
         angle: 120,
-        spread: 55,
-        origin: { x: 1, y: 0.7 },
-        colors: ['#E6CA85', '#E8A598', '#FAF7F2', '#DFBA6B']
+        spread: 60,
+        origin: { x: 1, y: 0.72 },
+        colors: goldColors
       });
 
-      // Emoji confetti shower
-      setTimeout(() => {
-        confetti({
-          particleCount: 25,
-          angle: 90,
-          spread: 80,
-          origin: { x: 0.5, y: 0.65 },
-          shapes: ['circle'],
-          colors: ['#E6CA85', '#E8A598']
-        });
-      }, 250);
+      // Center Emoji Cannon Burst (using shapeFromText if available, with floating fallback)
+      try {
+        if (typeof confetti.shapeFromText === 'function') {
+          const shapes = CELEBRATION_EMOJIS.map(e => confetti.shapeFromText({ text: e, scalar: 2.2 }));
+          confetti({
+            particleCount: 28,
+            angle: 90,
+            spread: 90,
+            origin: { x: 0.5, y: 0.65 },
+            shapes: shapes,
+            scalar: 2.2
+          });
+        }
+      } catch (err) {}
     }
 
-    // Background Canvas: Petal, Sparkle & Soft Heart Rain
+    function triggerWeddingFireworks() {
+      fireDualCannons();
+      setTimeout(fireDualCannons, 300);
+      setTimeout(fireDualCannons, 600);
+      try {
+        if (typeof confetti.shapeFromText === 'function') {
+          const weddingShapes = ['💍', '💖', '🏡', '🌹', '✨'].map(e => confetti.shapeFromText({ text: e, scalar: 2.4 }));
+          setTimeout(() => {
+            confetti({
+              particleCount: 35,
+              angle: 90,
+              spread: 100,
+              origin: { x: 0.5, y: 0.55 },
+              shapes: weddingShapes,
+              scalar: 2.4
+            });
+          }, 450);
+        }
+      } catch(e) {}
+    }
+
+    /* Background Canvas: Crisp Retina Petal, Sparkle & Soft Heart Rain */
     (function initAmbientRain() {
       const canvas = document.getElementById('ambient-rain-canvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
 
-      let width = canvas.width = window.innerWidth;
-      let height = canvas.height = window.innerHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      let width = 0;
+      let height = 0;
 
-      window.addEventListener('resize', () => {
-        width = canvas.width = window.innerWidth;
-        height = canvas.height = window.innerHeight;
-      });
+      function resizeCanvas() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width * dpr;
+        canvas.height = height * dpr;
+        ctx.scale(dpr, dpr);
+      }
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
 
       const particleList = [];
       const MAX_PARTICLES = 36;
@@ -1449,7 +1551,7 @@
 
       function createParticle(randomY = false) {
         const typeRand = Math.random();
-        let type = 'sparkle'; // sparkle, petal, heart
+        let type = 'sparkle';
         if (typeRand < 0.45) type = 'petal';
         else if (typeRand < 0.75) type = 'heart';
 
@@ -1458,8 +1560,8 @@
           x: Math.random() * width,
           y: randomY ? Math.random() * height : -20,
           size: Math.random() * 8 + 5,
-          speedY: Math.random() * 0.8 + 0.4,
-          speedX: Math.random() * 0.5 - 0.25,
+          speedY: Math.random() * 0.75 + 0.35,
+          speedX: Math.random() * 0.4 - 0.2,
           rotation: Math.random() * Math.PI * 2,
           rotSpeed: (Math.random() - 0.5) * 0.02,
           opacity: Math.random() * 0.5 + 0.25,
@@ -1473,7 +1575,7 @@
         for (let i = 0; i < particleList.length; i++) {
           const p = particleList[i];
           p.y += p.speedY;
-          p.x += Math.sin(p.y * 0.01 + p.sineOffset) * 0.5 + p.speedX;
+          p.x += Math.sin(p.y * 0.01 + p.sineOffset) * 0.4 + p.speedX;
           p.rotation += p.rotSpeed;
 
           ctx.save();
@@ -1482,7 +1584,6 @@
           ctx.globalAlpha = p.opacity;
 
           if (p.type === 'petal') {
-            // Rose Petal Shape
             ctx.fillStyle = '#E8A598';
             ctx.beginPath();
             ctx.moveTo(0, 0);
@@ -1490,7 +1591,6 @@
             ctx.quadraticCurveTo(p.size, p.size, 0, 0);
             ctx.fill();
           } else if (p.type === 'heart') {
-            // Heart Shape
             ctx.fillStyle = '#F8D7D1';
             const s = p.size * 0.6;
             ctx.beginPath();
@@ -1499,7 +1599,6 @@
             ctx.bezierCurveTo(s * 1.5, s * 0.5, s, -s * 0.5, 0, s * 0.3);
             ctx.fill();
           } else {
-            // Gold Sparkle Star
             ctx.fillStyle = '#E6CA85';
             ctx.beginPath();
             ctx.arc(0, 0, p.size * 0.3, 0, Math.PI * 2);
@@ -1519,10 +1618,9 @@
     })();
 
     /* -----------------------------------------------------------
-       C. FINGER-TOUCH FIREWORKS ON SCREEN
+       C. FINGER-TOUCH FIREWORKS ON SCREEN (Radial 360° Outward Spray)
     ----------------------------------------------------------- */
     document.addEventListener('pointerdown', (e) => {
-      // Avoid firing when clicking interactive controls
       if (e.target.closest('button') || e.target.closest('input') || e.target.closest('#scratch-canvas')) {
         return;
       }
@@ -1530,18 +1628,23 @@
     });
 
     function spawnTouchMicroSparks(x, y) {
-      const sparks = ['💖', '✨', '🌹', '⭐'];
-      const count = 6;
+      const sparks = ['💖', '✨', '🌹', '⭐', '🎂', '🦋'];
+      const count = 7;
       for (let i = 0; i < count; i++) {
         const item = document.createElement('div');
         item.className = 'touch-burst-particle';
-        item.textContent = sparks[Math.floor(Math.random() * sparks.length)];
+        item.textContent = sparks[i % sparks.length];
         item.style.left = `${x}px`;
         item.style.top = `${y}px`;
-        item.style.fontSize = `${Math.random() * 10 + 12}px`;
-        item.style.transform = `translate(${Math.random() * 40 - 20}px, ${Math.random() * 40 - 20}px)`;
+        item.style.fontSize = `${Math.random() * 8 + 14}px`;
+
+        const angle = (Math.PI * 2 / count) * i + (Math.random() * 0.4 - 0.2);
+        const dist = Math.random() * 45 + 30;
+        item.style.setProperty('--tx', `${Math.cos(angle) * dist}px`);
+        item.style.setProperty('--ty', `${Math.sin(angle) * dist}px`);
+
         document.body.appendChild(item);
-        setTimeout(() => item.remove(), 700);
+        setTimeout(() => item.remove(), 750);
       }
     }
 
@@ -1559,12 +1662,12 @@
           const el = document.createElement('div');
           el.className = 'reaction-emoji-float';
           el.textContent = emoji;
-          el.style.left = `${originX + (Math.random() * 30 - 15)}px`;
+          el.style.left = `${originX + (Math.random() * 26 - 13)}px`;
           el.style.top = `${originY}px`;
           el.style.setProperty('--x-shift', `${(Math.random() - 0.5) * 60}px`);
           document.body.appendChild(el);
           setTimeout(() => el.remove(), 1600);
-        }, i * 70);
+        }, i * 65);
       }
     }
 
@@ -1573,14 +1676,15 @@
     ----------------------------------------------------------- */
     function unlockCelebrationEnvelope() {
       const gate = document.getElementById('splash-gatekeeper');
+      if (!gate) return;
       fireDualCannons();
       playCelebrationChime();
 
       gate.style.transform = 'translateY(-100%)';
       gate.style.opacity = '0';
-      setTimeout(() => gate.remove(), 1050);
+      setTimeout(() => gate.remove(), 1000);
 
-      // Attempt to prime audio on initial user gesture
+      // Prime audio element on user gesture
       const audio = document.getElementById('main-audio-element');
       if (audio) {
         audio.load();
@@ -1609,11 +1713,23 @@
         if (img) img.src = dataUrl;
         try {
           localStorage.setItem(HERO_STORAGE_KEY, dataUrl);
+          document.getElementById('change-photo-label').textContent = "Updated! ✨";
         } catch (err) {
           console.warn('Storage limit exceeded for local photo save');
         }
       };
       reader.readAsDataURL(file);
+    }
+
+    function handleHeroAudioClick() {
+      const gate = document.getElementById('gift-box-gate');
+      if (gate && !gate.classList.contains('hidden')) {
+        document.getElementById('secret-gift-section').scrollIntoView({ behavior: 'smooth' });
+        gate.classList.add('border-gold');
+        setTimeout(() => gate.classList.remove('border-gold'), 1000);
+      } else {
+        toggleAudioPlayback();
+      }
     }
 
     /* -----------------------------------------------------------
@@ -1651,9 +1767,8 @@
         setTimeout(() => {
           gate.classList.add('hidden');
           playerUnlocked.classList.remove('hidden');
-          // Start voice note playback
           toggleAudioPlayback();
-        }, 500);
+        }, 450);
       }
     }
 
@@ -1684,14 +1799,13 @@
         audio.play().then(() => {
           setAudioPlayingVisuals(true);
         }).catch(() => {
-          // If browser prevents file playback, simulate with ambient synthesizer
+          // If browser prevents file playback or decode, fall back to Web Audio melody
           setAudioPlayingVisuals(true);
           startAmbientSynthMelody();
         });
       } else {
         audio.pause();
         setAudioPlayingVisuals(false);
-        stopAmbientSynthMelody();
       }
     }
 
@@ -1725,7 +1839,7 @@
         });
       } else {
         if (heroGlyph) heroGlyph.textContent = "▶";
-        if (heroLabel) heroLabel.textContent = "Play Voice Note";
+        if (heroLabel) heroLabel.textContent = "Voice Note";
         if (masterGlyph) masterGlyph.textContent = "▶";
         if (vinyl) vinyl.classList.remove('animate-spin-slow');
         if (statusText) statusText.textContent = "Paused";
@@ -1737,24 +1851,33 @@
       }
     }
 
-    // Connect Audio Tag Events
+    // Connect Native Audio Tag Events
     const audioEl = document.getElementById('main-audio-element');
     if (audioEl) {
+      function updateDurationLabel() {
+        const dur = audioEl.duration;
+        const durLabel = document.getElementById('audio-time-total');
+        if (durLabel && !isNaN(dur) && isFinite(dur)) {
+          const durMin = Math.floor(dur / 60);
+          const durSec = Math.floor(dur % 60);
+          durLabel.textContent = `${durMin}:${durSec.toString().padStart(2, '0')}`;
+        }
+      }
+
+      audioEl.addEventListener('loadedmetadata', updateDurationLabel);
+      audioEl.addEventListener('durationchange', updateDurationLabel);
+
       audioEl.ontimeupdate = () => {
         const cur = audioEl.currentTime || 0;
         const dur = audioEl.duration || 1;
         const curMin = Math.floor(cur / 60);
         const curSec = Math.floor(cur % 60);
-        const durMin = Math.floor(dur / 60);
-        const durSec = Math.floor(dur % 60);
 
         const curLabel = document.getElementById('audio-time-current');
-        const durLabel = document.getElementById('audio-time-total');
         const bar = document.getElementById('audio-progress-bar');
 
         if (curLabel) curLabel.textContent = `${curMin}:${curSec.toString().padStart(2, '0')}`;
-        if (durLabel && !isNaN(dur)) durLabel.textContent = `${durMin}:${durSec.toString().padStart(2, '0')}`;
-        if (bar) bar.style.width = `${(cur / dur) * 100}%`;
+        if (bar && dur > 0) bar.style.width = `${(cur / dur) * 100}%`;
       };
 
       audioEl.onended = () => {
@@ -1766,7 +1889,7 @@
       const audio = document.getElementById('main-audio-element');
       if (!audio || !audio.duration) return;
       const rect = e.currentTarget.getBoundingClientRect();
-      const pos = (e.clientX - rect.left) / rect.width;
+      const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
       audio.currentTime = pos * audio.duration;
     }
 
@@ -1782,32 +1905,47 @@
       }
     }
 
-    /* Ambient Web Audio Fallback Synth */
-    let synthInterval = null;
-    function startAmbientSynthMelody() {
-      if (synthInterval) clearInterval(synthInterval);
-      const notes = [261.63, 329.63, 392.00, 523.25, 440.00]; // C E G C A
-      let idx = 0;
-      synthInterval = setInterval(() => {
-        if (!isPlayingAudio) return;
-        playSynthNote(notes[idx % notes.length], 1.2);
-        idx++;
-      }, 900);
-    }
-    function stopAmbientSynthMelody() {
-      if (synthInterval) {
-        clearInterval(synthInterval);
-        synthInterval = null;
+    /* Ambient Web Audio Fallback & Harp Melody */
+    let harpInterval = null;
+    let isHarpActive = false;
+
+    function toggleAmbientHarp() {
+      isHarpActive = !isHarpActive;
+      const toggleText = document.getElementById('harp-toggle-text');
+      if (isHarpActive) {
+        startAmbientSynthMelody();
+        if (toggleText) toggleText.textContent = "Ambient Harp: On ✨";
+      } else {
+        stopAmbientSynthMelody();
+        if (toggleText) toggleText.textContent = "Ambient Harp: Off";
       }
     }
-    function playSynthNote(freq, dur = 0.8) {
+
+    function startAmbientSynthMelody() {
+      if (harpInterval) clearInterval(harpInterval);
+      const harpNotes = [261.63, 329.63, 392.00, 523.25, 659.25, 783.99]; // C E G C E G
+      let idx = 0;
+      harpInterval = setInterval(() => {
+        playSynthNote(harpNotes[idx % harpNotes.length], 1.4, 0.04);
+        idx++;
+      }, 1000);
+    }
+
+    function stopAmbientSynthMelody() {
+      if (harpInterval) {
+        clearInterval(harpInterval);
+        harpInterval = null;
+      }
+    }
+
+    function playSynthNote(freq, dur = 0.8, volume = 0.06) {
       try {
         const ctx = getWebAudioContext();
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
         osc.type = 'sine';
         osc.frequency.setValueAtTime(freq, ctx.currentTime);
-        gain.gain.setValueAtTime(0.06, ctx.currentTime);
+        gain.gain.setValueAtTime(volume, ctx.currentTime);
         gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
         osc.connect(gain);
         gain.connect(ctx.destination);
@@ -1823,57 +1961,64 @@
         const gain = ctx.createGain();
         osc.type = 'triangle';
         osc.frequency.setValueAtTime(540, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.15);
+        osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.12);
         gain.gain.setValueAtTime(0.08, ctx.currentTime);
-        gain.gain.linearRampToValueAtTime(0.001, ctx.currentTime + 0.15);
+        gain.gain.linearRampToValueAtTime(0.001, ctx.currentTime + 0.12);
         osc.connect(gain);
         gain.connect(ctx.destination);
         osc.start();
-        osc.stop(ctx.currentTime + 0.15);
+        osc.stop(ctx.currentTime + 0.12);
       } catch(e) {}
     }
 
     function playCelebrationChime() {
       try {
         const ctx = getWebAudioContext();
-        [523.25, 659.25, 783.99, 1046.50].forEach((freq, idx) => {
-          setTimeout(() => playSynthNote(freq, 1.4), idx * 160);
+        const notes = [523.25, 659.25, 783.99, 1046.50];
+        notes.forEach((freq, idx) => {
+          setTimeout(() => playSynthNote(freq, 1.4, 0.08), idx * 150);
         });
       } catch(e) {}
     }
 
     /* -----------------------------------------------------------
-       I. TOY A: SCRATCH CANVAS (HTML5 destination-out)
+       I. TOY A: SCRATCH CANVAS (Continuous Smooth Stroke & Safe Resize)
     ----------------------------------------------------------- */
     const scratchCanvas = document.getElementById('scratch-canvas');
     let scratchCtx = scratchCanvas ? scratchCanvas.getContext('2d') : null;
     let isScratching = false;
     let hasScratchCompleted = false;
+    let lastScratchX = null;
+    let lastScratchY = null;
+    let hasInitializedScratch = false;
 
-    function initScratchFoil() {
+    function initScratchFoil(force = false) {
       if (!scratchCanvas || !scratchCtx) return;
+      if (hasInitializedScratch && !force) return;
+
       const rect = scratchCanvas.getBoundingClientRect();
       scratchCanvas.width = rect.width || 340;
-      scratchCanvas.height = rect.height || 260;
+      scratchCanvas.height = rect.height || 270;
 
-      // Draw luxurious champagne gold foil with sparkles
       const w = scratchCanvas.width;
       const h = scratchCanvas.height;
 
+      // Luxurious champagne gold foil gradient
       const grad = scratchCtx.createLinearGradient(0, 0, w, h);
       grad.addColorStop(0, '#C5A059');
       grad.addColorStop(0.3, '#F7EBC6');
       grad.addColorStop(0.6, '#DFBA6B');
       grad.addColorStop(1, '#8E7036');
 
+      scratchCtx.globalCompositeOperation = 'source-over';
       scratchCtx.fillStyle = grad;
       scratchCtx.fillRect(0, 0, w, h);
 
       // Gold pattern flecks
-      scratchCtx.fillStyle = 'rgba(255, 255, 255, 0.25)';
-      for (let i = 0; i < 40; i++) {
+      scratchCtx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+      for (let i = 0; i < 45; i++) {
         scratchCtx.beginPath();
-        scratchCtx.arc(Math.random() * w, Math.random() * h, Math.random() * 3, 0, Math.PI * 2);
+        scratchCtx.arc(Math.random() * w, Math.random() * h, Math.random() * 2.5, 0, Math.PI * 2);
         scratchCtx.fill();
       }
 
@@ -1886,32 +2031,42 @@
       scratchCtx.font = '10px "Plus Jakarta Sans", sans-serif';
       scratchCtx.fillStyle = '#1A332C';
       scratchCtx.fillText('Rumi’s Reflection on Art & Soul', w / 2, h / 2 + 12);
+
+      hasInitializedScratch = true;
     }
 
-    window.addEventListener('DOMContentLoaded', initScratchFoil);
-    window.addEventListener('resize', initScratchFoil);
+    window.addEventListener('DOMContentLoaded', () => initScratchFoil(false));
+    setTimeout(() => initScratchFoil(false), 300);
 
-    function scratchAtPoint(x, y) {
+    function scratchSegment(x1, y1, x2, y2) {
       if (!scratchCtx || hasScratchCompleted) return;
       scratchCtx.globalCompositeOperation = 'destination-out';
-      scratchCtx.beginPath();
-      scratchCtx.arc(x, y, 22, 0, Math.PI * 2);
-      scratchCtx.fill();
+      scratchCtx.lineWidth = 42;
+      scratchCtx.lineCap = 'round';
+      scratchCtx.lineJoin = 'round';
 
-      checkScratchPercentage();
+      scratchCtx.beginPath();
+      scratchCtx.moveTo(x1, y1);
+      scratchCtx.lineTo(x2, y2);
+      scratchCtx.stroke();
     }
 
-    function checkScratchPercentage() {
+    let lastScratchCheckTime = 0;
+    function checkScratchPercentageThrottled() {
+      const now = Date.now();
+      if (now - lastScratchCheckTime < 180) return;
+      lastScratchCheckTime = now;
+
       if (hasScratchCompleted || !scratchCtx) return;
       const w = scratchCanvas.width;
       const h = scratchCanvas.height;
       const imgData = scratchCtx.getImageData(0, 0, w, h);
       const pixels = imgData.data;
       let clearPixels = 0;
-      const step = 32; // sampling step for speed
+      const step = 32;
 
       for (let i = 3; i < pixels.length; i += step * 4) {
-        if (pixels[i] === 0) clearPixels++;
+        if (pixels[i] < 128) clearPixels++;
       }
 
       const totalSampled = pixels.length / (step * 4);
@@ -1921,7 +2076,7 @@
       const pctLabel = document.getElementById('scratch-percentage-text');
       if (pctLabel) pctLabel.textContent = `Scratched: ${percent}%`;
 
-      if (percent >= 55) {
+      if (percent >= 50) {
         hasScratchCompleted = true;
         scratchCtx.clearRect(0, 0, w, h);
         fireDualCannons();
@@ -1930,42 +2085,62 @@
     }
 
     if (scratchCanvas) {
-      // Touch events
       scratchCanvas.addEventListener('touchstart', (e) => {
         isScratching = true;
         const rect = scratchCanvas.getBoundingClientRect();
         const touch = e.touches[0];
-        scratchAtPoint(touch.clientX - rect.left, touch.clientY - rect.top);
+        lastScratchX = touch.clientX - rect.left;
+        lastScratchY = touch.clientY - rect.top;
+        scratchSegment(lastScratchX, lastScratchY, lastScratchX, lastScratchY);
       }, { passive: true });
 
       scratchCanvas.addEventListener('touchmove', (e) => {
         if (!isScratching) return;
         const rect = scratchCanvas.getBoundingClientRect();
         const touch = e.touches[0];
-        scratchAtPoint(touch.clientX - rect.left, touch.clientY - rect.top);
+        const curX = touch.clientX - rect.left;
+        const curY = touch.clientY - rect.top;
+        scratchSegment(lastScratchX, lastScratchY, curX, curY);
+        lastScratchX = curX;
+        lastScratchY = curY;
+        checkScratchPercentageThrottled();
       }, { passive: true });
 
-      scratchCanvas.addEventListener('touchend', () => isScratching = false);
+      scratchCanvas.addEventListener('touchend', () => {
+        isScratching = false;
+        checkScratchPercentageThrottled();
+      });
 
-      // Mouse events
       scratchCanvas.addEventListener('mousedown', (e) => {
         isScratching = true;
         const rect = scratchCanvas.getBoundingClientRect();
-        scratchAtPoint(e.clientX - rect.left, e.clientY - rect.top);
+        lastScratchX = e.clientX - rect.left;
+        lastScratchY = e.clientY - rect.top;
+        scratchSegment(lastScratchX, lastScratchY, lastScratchX, lastScratchY);
       });
+
       scratchCanvas.addEventListener('mousemove', (e) => {
         if (!isScratching) return;
         const rect = scratchCanvas.getBoundingClientRect();
-        scratchAtPoint(e.clientX - rect.left, e.clientY - rect.top);
+        const curX = e.clientX - rect.left;
+        const curY = e.clientY - rect.top;
+        scratchSegment(lastScratchX, lastScratchY, curX, curY);
+        lastScratchX = curX;
+        lastScratchY = curY;
+        checkScratchPercentageThrottled();
       });
-      window.addEventListener('mouseup', () => isScratching = false);
+
+      window.addEventListener('mouseup', () => {
+        isScratching = false;
+        checkScratchPercentageThrottled();
+      });
     }
 
     function resetScratchCanvas() {
       hasScratchCompleted = false;
       const pctLabel = document.getElementById('scratch-percentage-text');
       if (pctLabel) pctLabel.textContent = "Scratch to reveal: 0%";
-      initScratchFoil();
+      initScratchFoil(true);
     }
 
     /* -----------------------------------------------------------
@@ -1985,32 +2160,32 @@
     const LANTERNS_DB = [
       {
         title: "Lantern 1: Health & 23rd Year",
-        en: "May Allah fill your 23rd year with radiant health, blooming joy, and continuous Sakinah.",
-        bn: "আল্লাহ তোমার ২৩তম বছরটি সুস্বাস্থ্য, অন্তরের প্রফুল্লতা ও অবিরাম প্রশান্তিতে ভরে দিন।"
+        en: "May Allah fill your 23rd year with radiant health and Sakinah.",
+        bn: "আল্লাহ তোমার ২৩তম বছরটি সুস্বাস্থ্য ও প্রশান্তিতে ভরে দিন।"
       },
       {
         title: "Lantern 2: Her Art & Creativity",
-        en: "May Allah put infinite Barakah in your artistic hands and illuminate every canvas you touch.",
-        bn: "আল্লাহ তোমার হাত ও শিল্পকর্মে অফুরন্ত বরকত দান করুন এবং তোমার আঁকা প্রতিটি ক্যানভাসকে আলোকিত করুন।"
+        en: "May Allah put barakah in your hands and creativity.",
+        bn: "আল্লাহ তোমার হাত ও শিল্পকর্মে অফুরন্ত বরকত দান করুন।"
       },
       {
         title: "Lantern 3: Deen & Salah",
-        en: "May our hearts stay steadfast upon Salah, modesty, and the path that earns His Pleasure.",
-        bn: "আমাদের হৃদয় যেন সর্বদা নামাজ, খোদাভীতি ও আল্লাহর সন্তুষ্টির ওপর অবিচল থাকে।"
+        en: "May our hearts stay anchored in Salah and truth.",
+        bn: "আমাদের হৃদয় যেন সর্বদা নামাজ ও সত্যের ওপর অবিচল থাকে।"
       },
       {
         title: "Lantern 4: Divine Shield",
-        en: "May Allah shield you from anxiety, sorrows, hardship, and every glimpse of the evil eye.",
-        bn: "আল্লাহ তোমাকে সকল দুশ্চিন্তা, কষ্ট, বিষণ্নতা এবং যেকোনো বদনজর থেকে হেফাজত করুন।"
+        en: "May Allah shield you from anxiety, sadness, and the evil eye.",
+        bn: "আল্লাহ তোমাকে সকল দুশ্চিন্তা, কষ্ট ও বদনজর থেকে হেফাজত করুন।"
       },
       {
-        title: "Lantern 5: Parents & Family in Sylhet",
-        en: "May Allah grant your beloved parents longevity, good health, and peace under His shade.",
-        bn: "আল্লাহ সিলেটে তোমার পরম শ্রদ্ধেয় মা-বাবা ও পরিবারকে নেক হায়াত, সুস্বাস্থ্য ও নিরাপত্তায় রাখুন।"
+        title: "Lantern 5: Parents in Sylhet",
+        en: "May Allah protect and bless your parents in Sylhet.",
+        bn: "আল্লাহ সিলেটে তোমার মা-বাবা ও পরিবারকে সুস্থ ও নিরাপদ রাখুন।"
       },
       {
-        title: "Lantern 6: Our Halal Nikah (0 km)",
-        en: "May Allah collapse the 2,276 km between us and unite us in a blessed halal Nikah under one roof.",
+        title: "Lantern 6: Our Nikah (0 km)",
+        en: "May Allah turn our 2,276 km into 0 km in a blessed halal union.",
         bn: "আল্লাহ খুব দ্রুত আমাদের এই ২,২৭৬ কি.মি. দূরত্ব ঘুচিয়ে হালাল ও বরকতময় নিকাহর মাধ্যমে এক ছাদের নিচে নিয়ে আসুন।"
       }
     ];
@@ -2021,19 +2196,27 @@
       playGentlePopSound();
       poppedLanternsSet.add(index);
 
-      // Visual pop
       const btn = document.getElementById(`lantern-btn-${index}`);
-      if (btn) {
-        btn.classList.add('opacity-40', 'scale-90');
+      const icon = document.getElementById(`lantern-icon-${index}`);
+      if (btn && icon) {
+        btn.classList.add('opacity-45', 'scale-90');
+        icon.textContent = '✨';
       }
 
-      // Dual confetti burst
       fireDualCannons();
 
-      // Update counter
       const counter = document.getElementById('lanterns-popped-counter');
       if (counter) {
-        counter.textContent = `Lanterns Blessed: ${poppedLanternsSet.size} of 6 🏮✨`;
+        counter.textContent = `Lanterns Blessed: ${poppedLanternsSet.size} of 6 🏮`;
+      }
+
+      if (poppedLanternsSet.size === 6) {
+        const hint = document.getElementById('lantern-header-hint');
+        if (hint) {
+          hint.textContent = "All 6 Duas Ascended to Heavens! 🤲🕊️✨";
+          hint.className = "text-gold font-bold animate-pulse";
+        }
+        triggerWeddingFireworks();
       }
 
       // Show Modal
@@ -2073,8 +2256,38 @@
           letterBox.style.opacity = '1';
           letterBox.style.transform = 'translateY(0)';
           letterBox.scrollIntoView({ behavior: 'smooth', block: 'end' });
-        }, 150);
+        }, 120);
       }
+    }
+
+    /* -----------------------------------------------------------
+       M. STORY CAROUSEL DYNAMIC DOTS & NAVIGATION
+    ----------------------------------------------------------- */
+    const storyCarousel = document.getElementById('story-carousel');
+    const dotsContainer = document.getElementById('carousel-dots');
+
+    function updateCarouselDots() {
+      if (!storyCarousel || !dotsContainer) return;
+      const cardWidth = 290 + 14; // card width + gap
+      const activeIdx = Math.min(4, Math.max(0, Math.round(storyCarousel.scrollLeft / cardWidth)));
+      const dots = dotsContainer.querySelectorAll('button');
+      dots.forEach((dot, idx) => {
+        if (idx === activeIdx) {
+          dot.className = "w-4 h-1.5 rounded-full bg-gold transition-all";
+        } else {
+          dot.className = "w-1.5 h-1.5 rounded-full bg-midnight-border transition-all";
+        }
+      });
+    }
+
+    if (storyCarousel) {
+      storyCarousel.addEventListener('scroll', updateCarouselDots, { passive: true });
+    }
+
+    function scrollCarouselToIndex(index) {
+      if (!storyCarousel) return;
+      const cardWidth = 290 + 14;
+      storyCarousel.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
     }
   </script>
 </body>
